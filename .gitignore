@@ -2,8 +2,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=pycharm+all,visualstudiocode,python,jupyternotebooks,qt,visualstudio
 
 ### TMP ###
-.csv
-.html
+*.csv
+*.html
 !tooltips.html
 
 ### JupyterNotebooks ###
