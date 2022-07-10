@@ -7,13 +7,13 @@ from bokeh.io import curdoc
 from subprocess import Popen
 from win32api import GetSystemMetrics
 from bokeh.plotting import figure, save
-from Models.DBSCAN.Clustering.PlotWindow import PlotWindow
+from MODELS.DBSCAN.Clustering.PlotWindow import PlotWindow
 from bokeh.models import ColumnDataSource, Legend, LegendItem, TapTool, OpenURL
 
 
 def show():
     p = Popen(['bokeh', 'serve', "crossfilter"], shell=True)
-    window = PlotWindow(link="file:///main.html", server=p)
+    window = PlotWindow(link="file:///TSAC.html", server=p)
     return window
 
 
@@ -35,7 +35,7 @@ def create(df_points, df_defects, df_labels, df_info, defect_limit=75):
                                    defects=df_defects, info=df_info_html, labels=df_labels))
     TOOLS = "hover,crosshair,pan,wheel_zoom,zoom_in,zoom_out,box_zoom,undo,redo,reset,tap,save,box_select,poly_select,"\
             "lasso_select, "
-    TOOLTIPS = open(os.getcwd() + "\\Models\\DBSCAN\\Clustering\\tooltips.html", "r", encoding='utf-8').read()
+    TOOLTIPS = open(os.getcwd() + "\\MODELS\\DBSCAN\\Clustering\\tooltips.html", "r", encoding='utf-8').read()
 
     width = GetSystemMetrics(0) - round(GetSystemMetrics(0) * 0.03)
     height = GetSystemMetrics(1) - round(GetSystemMetrics(1) * 0.10)
