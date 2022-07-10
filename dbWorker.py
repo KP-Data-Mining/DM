@@ -3,7 +3,7 @@ import math
 
 PATH = 'extcaland.db'
 
-class dbWorker:
+class DbWorker:
     isDataLoaded = False
     
     minDate = ''
