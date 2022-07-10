@@ -4,6 +4,7 @@
 ### TMP ###
 *.csv
 *.html
+*.db
 !tooltips.html
 
 ### JupyterNotebooks ###
