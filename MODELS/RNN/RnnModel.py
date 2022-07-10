@@ -12,7 +12,7 @@ import keras.backend
 from datetime import datetime
 from matplotlib import pyplot
 
-class rnnModel:
+class RnnModel:
     key             = 0
     name            = ""
 
