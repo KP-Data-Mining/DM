@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AdministratorWindow</class>
- <widget class="QWidget" name="AdministratorWindow">
+ <class>AdministratorWindow_Eng</class>
+ <widget class="QWidget" name="AdministratorWindow_Eng">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -72,7 +72,7 @@
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <attribute name="title">
-     <string>Прогнозирование качества</string>
+     <string>Quality forecasting</string>
     </attribute>
     <widget class="QWidget" name="verticalLayoutWidget_6">
      <property name="geometry">
@@ -99,7 +99,7 @@
          </size>
         </property>
         <property name="title">
-         <string>Синтез модели</string>
+         <string>Model synthesis</string>
         </property>
         <widget class="QWidget" name="gridLayoutWidget_2">
          <property name="geometry">
@@ -126,7 +126,7 @@
              </size>
             </property>
             <property name="title">
-             <string>Размер пакета</string>
+             <string>Batch</string>
             </property>
             <widget class="QComboBox" name="BatchComboBoxRNN">
              <property name="geometry">
@@ -170,7 +170,7 @@
              </size>
             </property>
             <property name="title">
-             <string>Оптимизатор</string>
+             <string>Optimizer</string>
             </property>
             <widget class="QComboBox" name="OptimizerComboBoxRNN">
              <property name="geometry">
@@ -214,7 +214,7 @@
              </size>
             </property>
             <property name="title">
-             <string>Максимальное число эпох</string>
+             <string>Epochs</string>
             </property>
             <widget class="QComboBox" name="EpochsComboBoxRNN">
              <property name="geometry">
@@ -262,7 +262,7 @@
          </size>
         </property>
         <property name="title">
-         <string>Настройки прогнозирования</string>
+         <string>Forecasting settings</string>
         </property>
         <widget class="QWidget" name="verticalLayoutWidget">
          <property name="geometry">
@@ -289,7 +289,7 @@
              </size>
             </property>
             <property name="title">
-             <string>Прогнозируемый показатель качества</string>
+             <string>Predictable defect</string>
             </property>
             <widget class="QComboBox" name="QualitIndicatorComboBoxRNN">
              <property name="geometry">
@@ -333,7 +333,7 @@
              </size>
             </property>
             <property name="title">
-             <string>Выбор влияющих параметров производства</string>
+             <string>Relevant parameters</string>
             </property>
             <widget class="QListWidget" name="RelevantFeaturesRNN">
              <property name="geometry">
@@ -384,7 +384,7 @@
          </size>
         </property>
         <property name="title">
-         <string>Описание данных</string>
+         <string>Data description</string>
         </property>
         <widget class="QPushButton" name="StartTrendsButtonRNN">
          <property name="enabled">
@@ -414,7 +414,7 @@
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
          <property name="text">
-          <string>Тренды параметров</string>
+          <string>Parameters trends</string>
          </property>
         </widget>
        </widget>
@@ -437,7 +437,7 @@
          </size>
         </property>
         <property name="title">
-         <string>Запуск вычислений</string>
+         <string>Start</string>
         </property>
         <widget class="QPushButton" name="LearnButtonRNN">
          <property name="enabled">
@@ -467,7 +467,7 @@
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
          <property name="text">
-          <string>Обучить</string>
+          <string>Train</string>
          </property>
         </widget>
        </widget>
@@ -512,7 +512,7 @@
          </size>
         </property>
         <property name="title">
-         <string>Результат вычислений</string>
+         <string>Result</string>
         </property>
         <widget class="QPushButton" name="ResultTrendsButtonRNN">
          <property name="enabled">
@@ -542,7 +542,7 @@
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
          <property name="text">
-          <string>Показать тренды действительных и спрогнозированных значений дефекта</string>
+          <string>Forecasted and real values trends</string>
          </property>
         </widget>
        </widget>
@@ -565,7 +565,7 @@
          </size>
         </property>
         <property name="title">
-         <string>Верификация модели</string>
+         <string>Model verification</string>
         </property>
         <widget class="QWidget" name="verticalLayoutWidget_4">
          <property name="geometry">
@@ -932,7 +932,7 @@
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="text">
-               <string>ROC-кривая</string>
+               <string>ROC-curve</string>
               </property>
              </widget>
             </item>
@@ -957,7 +957,7 @@
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="text">
-               <string>Тренды метрик при обучении</string>
+               <string>Training metrics trends</string>
               </property>
              </widget>
             </item>
@@ -985,7 +985,7 @@
          </size>
         </property>
         <property name="title">
-         <string>Сохранение модели</string>
+         <string>Save Model</string>
         </property>
         <widget class="QWidget" name="horizontalLayoutWidget">
          <property name="geometry">
@@ -1015,7 +1015,7 @@
              </size>
             </property>
             <property name="title">
-             <string>Наименование</string>
+             <string>Model name</string>
             </property>
             <widget class="QLineEdit" name="ModelNameLineEditRNN">
              <property name="enabled">
@@ -1065,7 +1065,7 @@
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="text">
-             <string>Сохранить</string>
+             <string>Save</string>
             </property>
            </widget>
           </item>
@@ -1094,7 +1094,7 @@
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="text">
-         <string>База данных нейросетевых моделей</string>
+         <string>Models database editor</string>
         </property>
        </widget>
       </item>

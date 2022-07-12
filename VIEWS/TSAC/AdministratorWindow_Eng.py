@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'TSAC/Administrator.ui'
+# Form implementation generated from reading ui file 'TSAC/Administrator_Eng.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -11,14 +11,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_AdministratorWindow(object):
-    def setupUi(self, AdministratorWindow):
-        AdministratorWindow.setObjectName("AdministratorWindow")
-        AdministratorWindow.setEnabled(True)
-        AdministratorWindow.resize(500, 530)
-        AdministratorWindow.setMinimumSize(QtCore.QSize(500, 530))
-        AdministratorWindow.setMaximumSize(QtCore.QSize(500, 530))
-        self.tabWidget_2 = QtWidgets.QTabWidget(AdministratorWindow)
+class Ui_AdministratorWindow_Eng(object):
+    def setupUi(self, AdministratorWindow_Eng):
+        AdministratorWindow_Eng.setObjectName("AdministratorWindow_Eng")
+        AdministratorWindow_Eng.setEnabled(True)
+        AdministratorWindow_Eng.resize(500, 530)
+        AdministratorWindow_Eng.setMinimumSize(QtCore.QSize(500, 530))
+        AdministratorWindow_Eng.setMaximumSize(QtCore.QSize(500, 530))
+        self.tabWidget_2 = QtWidgets.QTabWidget(AdministratorWindow_Eng)
         self.tabWidget_2.setGeometry(QtCore.QRect(0, 0, 500, 531))
         self.tabWidget_2.setMinimumSize(QtCore.QSize(0, 0))
         self.tabWidget_2.setMaximumSize(QtCore.QSize(500, 880))
@@ -153,30 +153,30 @@ class Ui_AdministratorWindow(object):
         self.gridLayout_3.addWidget(self.SettingsGroupboxTSA, 0, 0, 1, 1)
         self.tabWidget_2.addTab(self.TSA_tab, "")
 
-        self.retranslateUi(AdministratorWindow)
+        self.retranslateUi(AdministratorWindow_Eng)
         self.tabWidget_2.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(AdministratorWindow)
+        QtCore.QMetaObject.connectSlotsByName(AdministratorWindow_Eng)
 
-    def retranslateUi(self, AdministratorWindow):
+    def retranslateUi(self, AdministratorWindow_Eng):
         _translate = QtCore.QCoreApplication.translate
-        AdministratorWindow.setWindowTitle(_translate("AdministratorWindow", "AdministratorWindow"))
-        self.groupBox_7.setTitle(_translate("AdministratorWindow", "Настройки модуля анализа временных рядов"))
-        self.groupBox_4.setTitle(_translate("AdministratorWindow", "Выбор набора статистических характеристик"))
-        self.groupBox_3.setTitle(_translate("AdministratorWindow", "Размер \"скользящего окна\""))
-        self.groupBox_8.setTitle(_translate("AdministratorWindow", "Настройки модуля сжатия данных"))
-        self.groupBox_6.setTitle(_translate("AdministratorWindow", "Количество \"соседей\""))
-        self.groupBox_9.setTitle(_translate("AdministratorWindow", "Расстояние до \"соседей\""))
-        self.groupBox_10.setTitle(_translate("AdministratorWindow", "Настройки модуля кластеризации "))
-        self.groupBox_11.setTitle(_translate("AdministratorWindow", "Количество \"соседей\" "))
-        self.groupBox_12.setTitle(_translate("AdministratorWindow", "Расстояние до \"соседей\""))
-        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.TSA_tab), _translate("AdministratorWindow", "Анализ временных рядов"))
+        AdministratorWindow_Eng.setWindowTitle(_translate("AdministratorWindow_Eng", "AdministratorWindow"))
+        self.groupBox_7.setTitle(_translate("AdministratorWindow_Eng", "Time series analysis"))
+        self.groupBox_4.setTitle(_translate("AdministratorWindow_Eng", "Set of statistical characteristics"))
+        self.groupBox_3.setTitle(_translate("AdministratorWindow_Eng", "Window size"))
+        self.groupBox_8.setTitle(_translate("AdministratorWindow_Eng", "Data compression"))
+        self.groupBox_6.setTitle(_translate("AdministratorWindow_Eng", "Number of neighbors"))
+        self.groupBox_9.setTitle(_translate("AdministratorWindow_Eng", "Distance to neighbors"))
+        self.groupBox_10.setTitle(_translate("AdministratorWindow_Eng", "Clustering"))
+        self.groupBox_11.setTitle(_translate("AdministratorWindow_Eng", "Number of neighbors"))
+        self.groupBox_12.setTitle(_translate("AdministratorWindow_Eng", "Distance to neighbors"))
+        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.TSA_tab), _translate("AdministratorWindow_Eng", "Time series analysis"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    AdministratorWindow = QtWidgets.QWidget()
-    ui = Ui_AdministratorWindow()
-    ui.setupUi(AdministratorWindow)
-    AdministratorWindow.show()
+    AdministratorWindow_Eng = QtWidgets.QWidget()
+    ui = Ui_AdministratorWindow_Eng()
+    ui.setupUi(AdministratorWindow_Eng)
+    AdministratorWindow_Eng.show()
     sys.exit(app.exec_())

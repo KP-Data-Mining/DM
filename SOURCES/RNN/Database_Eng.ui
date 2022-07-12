@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DatabaseWindow</class>
- <widget class="QWidget" name="DatabaseWindow">
+ <class>DatabaseWindow_Eng</class>
+ <widget class="QWidget" name="DatabaseWindow_Eng">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -79,7 +79,7 @@
          </size>
         </property>
         <property name="text">
-         <string>Id модели:</string>
+         <string>Model id:</string>
         </property>
        </widget>
       </item>
@@ -117,7 +117,7 @@
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="text">
-         <string>Удалить</string>
+         <string>Delete</string>
         </property>
        </widget>
       </item>

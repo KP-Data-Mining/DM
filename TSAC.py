@@ -9,11 +9,11 @@ from PyQt5.QtWidgets import *
 
 from DbWorker import DbWorker
 
-from VIEWS.TSAC.MainWindow import Ui_MainWindow_Ru
-from VIEWS.TSAC.AdministratorWindow import Ui_AdministratorWindow_Ru
+from VIEWS.TSAC.MainWindow_Ru import Ui_MainWindow_Ru
+from VIEWS.TSAC.AdministratorWindow_Ru import Ui_AdministratorWindow_Ru
 
-from VIEWS.TSAC.MainWindow import Ui_MainWindow_Eng
-from VIEWS.TSAC.AdministratorWindow import Ui_AdministratorWindow_Eng
+from VIEWS.TSAC.MainWindow_Eng import Ui_MainWindow_Eng
+from VIEWS.TSAC.AdministratorWindow_Eng import Ui_AdministratorWindow_Eng
 
 init(autoreset=True)
 
@@ -74,7 +74,7 @@ def openAdministratorWindow():
     AdministratorWindow.show()
 
 def initializeLists(ui):
-    if type(ui) == Ui_AdministratorWindow:
+    if type(ui) == Ui_AdministratorWindow_Ru or type(ui) == Ui_AdministratorWindow_Eng:
         ##TSA
         administratorUI.TimeshiftSpinboxTSA.setValue(tsa.timeshift)
         administratorUI.FeatureExtractionSettingComboboxTSA.addItems(["Извлечение всех характеристик",
@@ -86,7 +86,7 @@ def initializeLists(ui):
         administratorUI.minimaldistanseUMAP.setValue(tsa.minimaldistanseUMAP)
         administratorUI.nneighboursDBSCAN.setValue(tsa.nneighboursDBSCAN)
         administratorUI.minimaldistanseDBSCAN.setValue(tsa.minimaldistanseDBSCAN)
-    if type(ui) == Ui_MainWindow:
+    if type(ui) == Ui_MainWindow_Ru or type(ui) == Ui_MainWindow_Eng:
         ##TSA
         items = dbw.getNames(dbw.names, dbw.x)
         outputItems = dbw.getNames(dbw.names, dbw.y)
@@ -104,7 +104,7 @@ def initializeLists(ui):
         mainUI.ParametersTSA.itemChanged.connect(ParametersSelectionTSA)
 
 def initializeActions(ui):
-    if type(ui) == Ui_AdministratorWindow:
+    if type(ui) == Ui_AdministratorWindow_Ru or type(ui) == Ui_AdministratorWindow_Eng:
         ##TSA
         administratorUI.TimeshiftSpinboxTSA.valueChanged.connect(TimeshiftValueTSA)
         administratorUI.FeatureExtractionSettingComboboxTSA.currentIndexChanged.connect(SettingsValueTSA)
@@ -113,7 +113,7 @@ def initializeActions(ui):
         administratorUI.nneighboursDBSCAN.valueChanged.connect(SavePropDBSCAN)
         administratorUI.minimaldistanseUMAP.valueChanged.connect(SavePropDBSCAN)
         administratorUI.minimaldistanseDBSCAN.valueChanged.connect(SavePropDBSCAN)
-    if type(ui) == Ui_MainWindow:
+    if type(ui) == Ui_MainWindow_Ru or type(ui) == Ui_MainWindow_Eng:
         mainUI.administrator_button.clicked.connect(openAdministratorWindow)
         ##TSA
         mainUI.ClusterDataButtonRAW.clicked.connect(ViewCompresClustersOfBase)
@@ -156,10 +156,10 @@ def PrepareDataTSA():
         for i in range(len(SelectedParametersIndexesTSA)):
             newparamlist = dbw.x[SelectedParametersIndexesTSA[i]]
             timeseries[SelectedParametersNamesTSA[i]] = newparamlist
-        timeseries = timeseries[timeseries['time'].between(str(mainUI.FromDateTimeTSA.dateTime().toPyDateTime()),
-                                                           str(mainUI.ToDateTimeTSA.dateTime().toPyDateTime()))]
-        defects = defects[defects['time'].between(str(mainUI.FromDateTimeTSA.dateTime().toPyDateTime()),
-                                                  str(mainUI.ToDateTimeTSA.dateTime().toPyDateTime()))]
+        timeseries = timeseries[timeseries['time'].between(str(settings['FromDateTime']),
+                                                           str(settings['ToDateTime']))]
+        defects = defects[defects['time'].between(str(settings['FromDateTime']),
+                                                  str(settings['ToDateTime']))]
         view_enable = tsa.TimeSeriesAnalyser(timeseries, defects, dbw.limits[SelectedOutputParameterIndexTSA])
         mainUI.ControlPanelTSA.setEnabled(view_enable)
         mainUI.RawDataButtonTSA.setEnabled(view_enable)
@@ -222,8 +222,8 @@ def ViewCompresClustersOfBase():
         for i in range(len(SelectedParametersIndexesTSA)):
             newparamlist = dbw.x[SelectedParametersIndexesTSA[i]]
             timeseries[SelectedParametersNamesTSA[i]] = newparamlist
-        timeseries = timeseries[timeseries['time'].between(str(mainUI.FromDateTimeTSA.dateTime().toPyDateTime()),
-                                                           str(mainUI.ToDateTimeTSA.dateTime().toPyDateTime()))]
+        timeseries = timeseries[timeseries['time'].between(str(settings['FromDateTime']),
+                                                           str(settings['ToDateTime']))]
         defects = [defect[0] for defect in pd.DataFrame({str(SelectedOutputParameterNameTSA): pd.Series(dbw.y[SelectedOutputParameterIndexTSA])}).to_numpy(np.float32)]
         points = np.array(Compression.CompressingData(timeseries.drop(columns=['time']),
                                                       n_neighbors=tsa.nneighboursUMAP,

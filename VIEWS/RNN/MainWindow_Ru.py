@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'RNN/Main.ui'
+# Form implementation generated from reading ui file 'RNN/Main_Ru.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -11,14 +11,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(500, 740)
-        MainWindow.setMinimumSize(QtCore.QSize(500, 740))
-        MainWindow.setMaximumSize(QtCore.QSize(500, 740))
-        MainWindow.setAnimated(False)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+class Ui_MainWindow_Ru(object):
+    def setupUi(self, MainWindow_Ru):
+        MainWindow_Ru.setObjectName("MainWindow_Ru")
+        MainWindow_Ru.resize(500, 740)
+        MainWindow_Ru.setMinimumSize(QtCore.QSize(500, 740))
+        MainWindow_Ru.setMaximumSize(QtCore.QSize(500, 740))
+        MainWindow_Ru.setAnimated(False)
+        self.centralwidget = QtWidgets.QWidget(MainWindow_Ru)
         self.centralwidget.setMinimumSize(QtCore.QSize(500, 720))
         self.centralwidget.setMaximumSize(QtCore.QSize(500, 720))
         self.centralwidget.setObjectName("centralwidget")
@@ -251,46 +251,46 @@ class Ui_MainWindow(object):
         self.administrator_button.setObjectName("administrator_button")
         self.horizontalLayout.addWidget(self.administrator_button)
         self.verticalLayout.addLayout(self.horizontalLayout)
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        MainWindow_Ru.setCentralWidget(self.centralwidget)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow_Ru)
         self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        MainWindow_Ru.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow)
+        self.retranslateUi(MainWindow_Ru)
         self.tabWidget.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow_Ru)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, MainWindow_Ru):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.ModelSelectGroupBoxRNN.setTitle(_translate("MainWindow", "Выбор модели"))
-        self.loadModelButtonRNN.setText(_translate("MainWindow", "Загрузить модель"))
-        self.ModelDescriptionGroupBoxRNN.setTitle(_translate("MainWindow", "Описание модели"))
-        self.DataDescriptionGroupBoxRNN.setTitle(_translate("MainWindow", "Описание данных"))
-        self.StartTrendsButtonRNN.setText(_translate("MainWindow", "Тренды параметров"))
-        self.StartGroupBoxRNN.setTitle(_translate("MainWindow", "Запуск вычислений"))
-        self.StartButtonRNN.setText(_translate("MainWindow", "Прогнозировать"))
-        self.ResultGroupBoxRNN.setTitle(_translate("MainWindow", "Результат вычислений"))
-        self.ResultTrendsButtonRNN.setText(_translate("MainWindow", "Показать тренды действительных и спрогнозированных значений дефекта"))
-        self.ModelValidationGroupBoxRNN.setTitle(_translate("MainWindow", "Верификация модели"))
-        self.MaeLabelRNN.setText(_translate("MainWindow", "MAE ="))
-        self.PrecisionLabelRNN.setText(_translate("MainWindow", "Precision = "))
-        self.AucLabelRNN.setText(_translate("MainWindow", "AUC = "))
-        self.MapeLabelRNN.setText(_translate("MainWindow", "MAPE, % = "))
-        self.F1LabelRNN.setText(_translate("MainWindow", "F1 = "))
-        self.MseLabelRNN.setText(_translate("MainWindow", "MSE = "))
-        self.RecallLabelRNN.setText(_translate("MainWindow", "Recall = "))
-        self.RmseLabelRNN.setText(_translate("MainWindow", "RMSE = "))
-        self.RocTrendButtonRNN.setText(_translate("MainWindow", "ROC-кривая"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.RNN_tab), _translate("MainWindow", "Прогнозирование качества"))
-        self.administrator_button.setText(_translate("MainWindow", "Настройка моделей"))
+        MainWindow_Ru.setWindowTitle(_translate("MainWindow_Ru", "MainWindow"))
+        self.ModelSelectGroupBoxRNN.setTitle(_translate("MainWindow_Ru", "Выбор модели"))
+        self.loadModelButtonRNN.setText(_translate("MainWindow_Ru", "Загрузить модель"))
+        self.ModelDescriptionGroupBoxRNN.setTitle(_translate("MainWindow_Ru", "Описание модели"))
+        self.DataDescriptionGroupBoxRNN.setTitle(_translate("MainWindow_Ru", "Описание данных"))
+        self.StartTrendsButtonRNN.setText(_translate("MainWindow_Ru", "Тренды параметров"))
+        self.StartGroupBoxRNN.setTitle(_translate("MainWindow_Ru", "Запуск вычислений"))
+        self.StartButtonRNN.setText(_translate("MainWindow_Ru", "Прогнозировать"))
+        self.ResultGroupBoxRNN.setTitle(_translate("MainWindow_Ru", "Результат вычислений"))
+        self.ResultTrendsButtonRNN.setText(_translate("MainWindow_Ru", "Показать тренды действительных и спрогнозированных значений дефекта"))
+        self.ModelValidationGroupBoxRNN.setTitle(_translate("MainWindow_Ru", "Верификация модели"))
+        self.MaeLabelRNN.setText(_translate("MainWindow_Ru", "MAE ="))
+        self.PrecisionLabelRNN.setText(_translate("MainWindow_Ru", "Precision = "))
+        self.AucLabelRNN.setText(_translate("MainWindow_Ru", "AUC = "))
+        self.MapeLabelRNN.setText(_translate("MainWindow_Ru", "MAPE, % = "))
+        self.F1LabelRNN.setText(_translate("MainWindow_Ru", "F1 = "))
+        self.MseLabelRNN.setText(_translate("MainWindow_Ru", "MSE = "))
+        self.RecallLabelRNN.setText(_translate("MainWindow_Ru", "Recall = "))
+        self.RmseLabelRNN.setText(_translate("MainWindow_Ru", "RMSE = "))
+        self.RocTrendButtonRNN.setText(_translate("MainWindow_Ru", "ROC-кривая"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.RNN_tab), _translate("MainWindow_Ru", "Прогнозирование качества"))
+        self.administrator_button.setText(_translate("MainWindow_Ru", "Настройка моделей"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    MainWindow_Ru = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow_Ru()
+    ui.setupUi(MainWindow_Ru)
+    MainWindow_Ru.show()
     sys.exit(app.exec_())

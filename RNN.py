@@ -10,13 +10,13 @@ from PyQt5.QtWidgets import *
 from DbWorker import DbWorker
 from MODELS.RNN.RnnModel import RnnModel
 
-from VIEWS.RNN.MainWindow import Ui_MainWindow_Ru
-from VIEWS.RNN.DatabaseWindow import Ui_DatabaseWindow_Ru
-from VIEWS.RNN.AdministratorWindow import Ui_AdministratorWindow_Ru
+from VIEWS.RNN.MainWindow_Ru import Ui_MainWindow_Ru
+from VIEWS.RNN.DatabaseWindow_Ru import Ui_DatabaseWindow_Ru
+from VIEWS.RNN.AdministratorWindow_Ru import Ui_AdministratorWindow_Ru
 
-from VIEWS.RNN.MainWindow import Ui_MainWindow_Eng
-from VIEWS.RNN.DatabaseWindow import Ui_DatabaseWindow_Eng
-from VIEWS.RNN.AdministratorWindow import Ui_AdministratorWindow_Eng
+from VIEWS.RNN.MainWindow_Eng import Ui_MainWindow_Eng
+from VIEWS.RNN.DatabaseWindow_Eng import Ui_DatabaseWindow_Eng
+from VIEWS.RNN.AdministratorWindow_Eng import Ui_AdministratorWindow_Eng
 
 init(autoreset=True)
 
@@ -67,19 +67,19 @@ def openAdministratorWindow():
     AdministratorWindow.show()
 
 def initializeLists(ui):
-    if type(ui) == Ui_AdministratorWindow:
+    if type(ui) == Ui_AdministratorWindow_Ru or type(ui) == Ui_AdministratorWindow_Eng:
         administratorUI.QualitIndicatorComboBoxRNN.addItems(dbw.getNames(dbw.names, dbw.defects))
         addCheckableItems(administratorUI.RelevantFeaturesRNN, dbw.getNames(dbw.names, dbw.features))
         administratorUI.OptimizerComboBoxRNN.addItems(dbw.optimizers.values())
         administratorUI.BatchComboBoxRNN.addItems(dbw.batches.values())
         administratorUI.EpochsComboBoxRNN.addItems(dbw.epochs.values())
-    if type(ui) == Ui_MainWindow:
+    if type(ui) == Ui_MainWindow_Ru or type(ui) == Ui_MainWindow_Eng:
         mainUI.ModelComboBoxRNN.addItems(dbw.models.values())
-    if type(ui) == Ui_DatabaseWindow:
+    if type(ui) == Ui_DatabaseWindow_Ru or type(ui) == Ui_DatabaseWindow_Eng:
         addTableItems()
 
 def initializeActions(ui):
-    if type(ui) == Ui_AdministratorWindow:
+    if type(ui) == Ui_AdministratorWindow_Ru or type(ui) == Ui_AdministratorWindow_Eng:
         administratorUI.RocTrendButtonRNN.clicked.connect(showRoc)
         administratorUI.RelevantFeaturesRNN.clicked.connect(clearUI)
         administratorUI.MetricsButtonRNN.clicked.connect(showHistory)
@@ -92,7 +92,7 @@ def initializeActions(ui):
         administratorUI.OptimizerComboBoxRNN.currentIndexChanged.connect(clearUI)
         administratorUI.StartTrendsButtonRNN.clicked.connect(showSourceTrendsLearn)
         administratorUI.QualitIndicatorComboBoxRNN.currentIndexChanged.connect(clearUI)
-    if type(ui) == Ui_MainWindow:
+    if type(ui) == Ui_MainWindow_Ru or type(ui) == Ui_MainWindow_Eng:
         mainUI.RocTrendButtonRNN.clicked.connect(showRoc)
         mainUI.loadModelButtonRNN.clicked.connect(selectModel)
         mainUI.StartButtonRNN.clicked.connect(lambda: forecast())
@@ -100,13 +100,13 @@ def initializeActions(ui):
         mainUI.ResultTrendsButtonRNN.clicked.connect(showResultTrends)
         mainUI.administrator_button.clicked.connect(openAdministratorWindow)
         mainUI.StartTrendsButtonRNN.clicked.connect(showSourceTrendsForecast)
-    if type(ui) == Ui_DatabaseWindow:
+    if type(ui) == Ui_DatabaseWindow_Ru or type(ui) == Ui_DatabaseWindow_Eng:
         databaseUI.deleteButton.clicked.connect(deleteModel)
 def initializeUi(ui):
-    if type(ui) == Ui_AdministratorWindow:
+    if type(ui) == Ui_AdministratorWindow_Ru or type(ui) == Ui_AdministratorWindow_Eng:
         administratorUI.progressBar.setMinimum(0)
         administratorUI.progressBar.setValue(0)
-    if type(ui) == Ui_MainWindow:
+    if type(ui) == Ui_MainWindow_Ru or type(ui) == Ui_MainWindow_Eng:
         mainUI.progressBar.setMinimum(0)
         mainUI.progressBar.setValue(0)
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'TSAC/Main.ui'
+# Form implementation generated from reading ui file 'TSAC/Main_Ru.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -11,14 +11,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(500, 740)
-        MainWindow.setMinimumSize(QtCore.QSize(500, 740))
-        MainWindow.setMaximumSize(QtCore.QSize(500, 740))
-        MainWindow.setAnimated(False)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+class Ui_MainWindow_Ru(object):
+    def setupUi(self, MainWindow_Ru):
+        MainWindow_Ru.setObjectName("MainWindow_Ru")
+        MainWindow_Ru.resize(500, 740)
+        MainWindow_Ru.setMinimumSize(QtCore.QSize(500, 740))
+        MainWindow_Ru.setMaximumSize(QtCore.QSize(500, 740))
+        MainWindow_Ru.setAnimated(False)
+        self.centralwidget = QtWidgets.QWidget(MainWindow_Ru)
         self.centralwidget.setMinimumSize(QtCore.QSize(500, 720))
         self.centralwidget.setMaximumSize(QtCore.QSize(500, 720))
         self.centralwidget.setObjectName("centralwidget")
@@ -137,45 +137,45 @@ class Ui_MainWindow(object):
         self.administrator_button.setObjectName("administrator_button")
         self.horizontalLayout.addWidget(self.administrator_button)
         self.verticalLayout.addLayout(self.horizontalLayout)
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        MainWindow_Ru.setCentralWidget(self.centralwidget)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow_Ru)
         self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        MainWindow_Ru.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow)
+        self.retranslateUi(MainWindow_Ru)
         self.tabWidget.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow_Ru)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, MainWindow_Ru):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.ParametersGroupboxTSA.setTitle(_translate("MainWindow", "Выбор технологических параметров для проведения анализа"))
-        self.StartGroupBoxTSA.setTitle(_translate("MainWindow", "Запуск вычислений"))
-        self.StartButtonTSA.setText(_translate("MainWindow", "Начать"))
-        self.ControlPanelTSA.setTitle(_translate("MainWindow", "Контрольная панель"))
-        self.FeaturesDataLabelTSA.setText(_translate("MainWindow", "<html><head/><body><p>Статистические <br/>характеристики</p></body></html>"))
-        self.FeaturesDataButtonTSA.setText(_translate("MainWindow", "Показать"))
-        self.ClusterDataButtonTSA.setText(_translate("MainWindow", "Показать"))
-        self.ClusterDataLabelTSA.setText(_translate("MainWindow", "Кластеризация\n"
+        MainWindow_Ru.setWindowTitle(_translate("MainWindow_Ru", "MainWindow"))
+        self.ParametersGroupboxTSA.setTitle(_translate("MainWindow_Ru", "Выбор технологических параметров для проведения анализа"))
+        self.StartGroupBoxTSA.setTitle(_translate("MainWindow_Ru", "Запуск вычислений"))
+        self.StartButtonTSA.setText(_translate("MainWindow_Ru", "Начать"))
+        self.ControlPanelTSA.setTitle(_translate("MainWindow_Ru", "Контрольная панель"))
+        self.FeaturesDataLabelTSA.setText(_translate("MainWindow_Ru", "<html><head/><body><p>Статистические <br/>характеристики</p></body></html>"))
+        self.FeaturesDataButtonTSA.setText(_translate("MainWindow_Ru", "Показать"))
+        self.ClusterDataButtonTSA.setText(_translate("MainWindow_Ru", "Показать"))
+        self.ClusterDataLabelTSA.setText(_translate("MainWindow_Ru", "Кластеризация\n"
 "статистических\n"
 "характеристик"))
-        self.ControlPanelTSA_2.setTitle(_translate("MainWindow", "Контрольная панель (Управляющие воздействия)"))
-        self.RawDataLabelTSA.setText(_translate("MainWindow", "Временные ряды\n"
+        self.ControlPanelTSA_2.setTitle(_translate("MainWindow_Ru", "Контрольная панель (Управляющие воздействия)"))
+        self.RawDataLabelTSA.setText(_translate("MainWindow_Ru", "Временные ряды\n"
 "управляющих воздействий"))
-        self.ClusterDataLabelTSA_2.setText(_translate("MainWindow", "Кластеризация\n"
+        self.ClusterDataLabelTSA_2.setText(_translate("MainWindow_Ru", "Кластеризация\n"
 "управляющих\n"
 "воздействий"))
-        self.ClusterDataButtonRAW.setText(_translate("MainWindow", "Показать"))
-        self.RawDataButtonTSA.setText(_translate("MainWindow", "Показать"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.TSA_tab), _translate("MainWindow", "Анализ временных рядов"))
-        self.administrator_button.setText(_translate("MainWindow", "Настройка моделей"))
+        self.ClusterDataButtonRAW.setText(_translate("MainWindow_Ru", "Показать"))
+        self.RawDataButtonTSA.setText(_translate("MainWindow_Ru", "Показать"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.TSA_tab), _translate("MainWindow_Ru", "Анализ временных рядов"))
+        self.administrator_button.setText(_translate("MainWindow_Ru", "Настройка моделей"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    MainWindow_Ru = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow_Ru()
+    ui.setupUi(MainWindow_Ru)
+    MainWindow_Ru.show()
     sys.exit(app.exec_())

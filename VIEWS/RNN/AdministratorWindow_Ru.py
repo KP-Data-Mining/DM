@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'RNN/Administrator.ui'
+# Form implementation generated from reading ui file 'RNN/Administrator_Ru.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -11,14 +11,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_AdministratorWindow(object):
-    def setupUi(self, AdministratorWindow):
-        AdministratorWindow.setObjectName("AdministratorWindow")
-        AdministratorWindow.setEnabled(True)
-        AdministratorWindow.resize(500, 880)
-        AdministratorWindow.setMinimumSize(QtCore.QSize(500, 880))
-        AdministratorWindow.setMaximumSize(QtCore.QSize(500, 880))
-        self.tabWidget_2 = QtWidgets.QTabWidget(AdministratorWindow)
+class Ui_AdministratorWindow_Ru(object):
+    def setupUi(self, AdministratorWindow_Ru):
+        AdministratorWindow_Ru.setObjectName("AdministratorWindow_Ru")
+        AdministratorWindow_Ru.setEnabled(True)
+        AdministratorWindow_Ru.resize(500, 880)
+        AdministratorWindow_Ru.setMinimumSize(QtCore.QSize(500, 880))
+        AdministratorWindow_Ru.setMaximumSize(QtCore.QSize(500, 880))
+        self.tabWidget_2 = QtWidgets.QTabWidget(AdministratorWindow_Ru)
         self.tabWidget_2.setGeometry(QtCore.QRect(0, 0, 500, 880))
         self.tabWidget_2.setMinimumSize(QtCore.QSize(500, 880))
         self.tabWidget_2.setMaximumSize(QtCore.QSize(500, 880))
@@ -326,49 +326,49 @@ class Ui_AdministratorWindow(object):
         self.RnnVerticalLayout.addWidget(self.ModelsDbButtonRNN)
         self.tabWidget_2.addTab(self.RNN_tab, "")
 
-        self.retranslateUi(AdministratorWindow)
+        self.retranslateUi(AdministratorWindow_Ru)
         self.tabWidget_2.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(AdministratorWindow)
+        QtCore.QMetaObject.connectSlotsByName(AdministratorWindow_Ru)
 
-    def retranslateUi(self, AdministratorWindow):
+    def retranslateUi(self, AdministratorWindow_Ru):
         _translate = QtCore.QCoreApplication.translate
-        AdministratorWindow.setWindowTitle(_translate("AdministratorWindow", "AdministratorWindow"))
-        self.ModelSettingsGroupBoxRNN.setTitle(_translate("AdministratorWindow", "Синтез модели"))
-        self.BatchGroupBoxRNN.setTitle(_translate("AdministratorWindow", "Размер пакета"))
-        self.OptimizerGroupBoxRNN.setTitle(_translate("AdministratorWindow", "Оптимизатор"))
-        self.EpochsGroupBoxRNN.setTitle(_translate("AdministratorWindow", "Максимальное число эпох"))
-        self.ForecastingSettingsGroupBoxRNN.setTitle(_translate("AdministratorWindow", "Настройки прогнозирования"))
-        self.QualitIndicatorGroupBoxRNN.setTitle(_translate("AdministratorWindow", "Прогнозируемый показатель качества"))
-        self.RelevantFeaturesGroupBoxRNN.setTitle(_translate("AdministratorWindow", "Выбор влияющих параметров производства"))
-        self.DataDescriptionGroupBoxRNN.setTitle(_translate("AdministratorWindow", "Описание данных"))
-        self.StartTrendsButtonRNN.setText(_translate("AdministratorWindow", "Тренды параметров"))
-        self.LearnGroupBoxRNN.setTitle(_translate("AdministratorWindow", "Запуск вычислений"))
-        self.LearnButtonRNN.setText(_translate("AdministratorWindow", "Обучить"))
-        self.ResultGroupBoxRNN.setTitle(_translate("AdministratorWindow", "Результат вычислений"))
-        self.ResultTrendsButtonRNN.setText(_translate("AdministratorWindow", "Показать тренды действительных и спрогнозированных значений дефекта"))
-        self.ModelValidationGroupBoxRNN.setTitle(_translate("AdministratorWindow", "Верификация модели"))
-        self.MaeLabelRNN.setText(_translate("AdministratorWindow", "MAE ="))
-        self.PrecisionLabelRNN.setText(_translate("AdministratorWindow", "Precision = "))
-        self.AucLabelRNN.setText(_translate("AdministratorWindow", "AUC = "))
-        self.MapeLabelRNN.setText(_translate("AdministratorWindow", "MAPE, % = "))
-        self.F1LabelRNN.setText(_translate("AdministratorWindow", "F1 = "))
-        self.MseLabelRNN.setText(_translate("AdministratorWindow", "MSE = "))
-        self.RecallLabelRNN.setText(_translate("AdministratorWindow", "Recall = "))
-        self.RmseLabelRNN.setText(_translate("AdministratorWindow", "RMSE = "))
-        self.RocTrendButtonRNN.setText(_translate("AdministratorWindow", "ROC-кривая"))
-        self.MetricsButtonRNN.setText(_translate("AdministratorWindow", "Тренды метрик при обучении"))
-        self.ModelSaveGroupBoxRNN.setTitle(_translate("AdministratorWindow", "Сохранение модели"))
-        self.ModelNameGroupBoxRNN.setTitle(_translate("AdministratorWindow", "Наименование"))
-        self.SaveModelButtonRNN.setText(_translate("AdministratorWindow", "Сохранить"))
-        self.ModelsDbButtonRNN.setText(_translate("AdministratorWindow", "База данных нейросетевых моделей"))
-        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.RNN_tab), _translate("AdministratorWindow", "Прогнозирование качества"))
+        AdministratorWindow_Ru.setWindowTitle(_translate("AdministratorWindow_Ru", "AdministratorWindow"))
+        self.ModelSettingsGroupBoxRNN.setTitle(_translate("AdministratorWindow_Ru", "Синтез модели"))
+        self.BatchGroupBoxRNN.setTitle(_translate("AdministratorWindow_Ru", "Размер пакета"))
+        self.OptimizerGroupBoxRNN.setTitle(_translate("AdministratorWindow_Ru", "Оптимизатор"))
+        self.EpochsGroupBoxRNN.setTitle(_translate("AdministratorWindow_Ru", "Максимальное число эпох"))
+        self.ForecastingSettingsGroupBoxRNN.setTitle(_translate("AdministratorWindow_Ru", "Настройки прогнозирования"))
+        self.QualitIndicatorGroupBoxRNN.setTitle(_translate("AdministratorWindow_Ru", "Прогнозируемый показатель качества"))
+        self.RelevantFeaturesGroupBoxRNN.setTitle(_translate("AdministratorWindow_Ru", "Выбор влияющих параметров производства"))
+        self.DataDescriptionGroupBoxRNN.setTitle(_translate("AdministratorWindow_Ru", "Описание данных"))
+        self.StartTrendsButtonRNN.setText(_translate("AdministratorWindow_Ru", "Тренды параметров"))
+        self.LearnGroupBoxRNN.setTitle(_translate("AdministratorWindow_Ru", "Запуск вычислений"))
+        self.LearnButtonRNN.setText(_translate("AdministratorWindow_Ru", "Обучить"))
+        self.ResultGroupBoxRNN.setTitle(_translate("AdministratorWindow_Ru", "Результат вычислений"))
+        self.ResultTrendsButtonRNN.setText(_translate("AdministratorWindow_Ru", "Показать тренды действительных и спрогнозированных значений дефекта"))
+        self.ModelValidationGroupBoxRNN.setTitle(_translate("AdministratorWindow_Ru", "Верификация модели"))
+        self.MaeLabelRNN.setText(_translate("AdministratorWindow_Ru", "MAE ="))
+        self.PrecisionLabelRNN.setText(_translate("AdministratorWindow_Ru", "Precision = "))
+        self.AucLabelRNN.setText(_translate("AdministratorWindow_Ru", "AUC = "))
+        self.MapeLabelRNN.setText(_translate("AdministratorWindow_Ru", "MAPE, % = "))
+        self.F1LabelRNN.setText(_translate("AdministratorWindow_Ru", "F1 = "))
+        self.MseLabelRNN.setText(_translate("AdministratorWindow_Ru", "MSE = "))
+        self.RecallLabelRNN.setText(_translate("AdministratorWindow_Ru", "Recall = "))
+        self.RmseLabelRNN.setText(_translate("AdministratorWindow_Ru", "RMSE = "))
+        self.RocTrendButtonRNN.setText(_translate("AdministratorWindow_Ru", "ROC-кривая"))
+        self.MetricsButtonRNN.setText(_translate("AdministratorWindow_Ru", "Тренды метрик при обучении"))
+        self.ModelSaveGroupBoxRNN.setTitle(_translate("AdministratorWindow_Ru", "Сохранение модели"))
+        self.ModelNameGroupBoxRNN.setTitle(_translate("AdministratorWindow_Ru", "Наименование"))
+        self.SaveModelButtonRNN.setText(_translate("AdministratorWindow_Ru", "Сохранить"))
+        self.ModelsDbButtonRNN.setText(_translate("AdministratorWindow_Ru", "База данных нейросетевых моделей"))
+        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.RNN_tab), _translate("AdministratorWindow_Ru", "Прогнозирование качества"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    AdministratorWindow = QtWidgets.QWidget()
-    ui = Ui_AdministratorWindow()
-    ui.setupUi(AdministratorWindow)
-    AdministratorWindow.show()
+    AdministratorWindow_Ru = QtWidgets.QWidget()
+    ui = Ui_AdministratorWindow_Ru()
+    ui.setupUi(AdministratorWindow_Ru)
+    AdministratorWindow_Ru.show()
     sys.exit(app.exec_())
