@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AdministratorWindow</class>
- <widget class="QWidget" name="AdministratorWindow">
+ <class>AdministratorWindow_Eng</class>
+ <widget class="QWidget" name="AdministratorWindow_Eng">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -57,7 +57,7 @@
    </property>
    <widget class="QWidget" name="TSA_tab">
     <attribute name="title">
-     <string>Анализ временных рядов</string>
+     <string>Time series analysis</string>
     </attribute>
     <widget class="QWidget" name="gridLayoutWidget_3">
      <property name="geometry">
@@ -91,7 +91,7 @@
           </font>
          </property>
          <property name="title">
-          <string>Настройки модуля анализа временных рядов</string>
+          <string>Time series analysis</string>
          </property>
          <widget class="QGroupBox" name="groupBox_4">
           <property name="geometry">
@@ -110,7 +110,7 @@
            </font>
           </property>
           <property name="title">
-           <string>Выбор набора статистических характеристик</string>
+           <string>Set of statistical characteristics</string>
           </property>
           <widget class="QComboBox" name="FeatureExtractionSettingComboboxTSA">
            <property name="geometry">
@@ -120,6 +120,9 @@
              <width>431</width>
              <height>31</height>
             </rect>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
           </widget>
          </widget>
@@ -140,7 +143,7 @@
            </font>
           </property>
           <property name="title">
-           <string>Размер &quot;скользящего окна&quot;</string>
+           <string>Window size</string>
           </property>
           <widget class="QSpinBox" name="TimeshiftSpinboxTSA">
            <property name="geometry">
@@ -150,6 +153,9 @@
              <width>431</width>
              <height>22</height>
             </rect>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="minimum">
             <number>5</number>
@@ -180,7 +186,7 @@
           </font>
          </property>
          <property name="title">
-          <string>Настройки модуля сжатия данных</string>
+          <string>Data compression</string>
          </property>
          <widget class="QGroupBox" name="groupBox_6">
           <property name="geometry">
@@ -199,7 +205,7 @@
            </font>
           </property>
           <property name="title">
-           <string>Количество &quot;соседей&quot;</string>
+           <string>Number of neighbors</string>
           </property>
           <widget class="QSpinBox" name="nneighboursUMAP">
            <property name="geometry">
@@ -209,6 +215,9 @@
              <width>191</width>
              <height>22</height>
             </rect>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="minimum">
             <number>1</number>
@@ -238,7 +247,7 @@
            </font>
           </property>
           <property name="title">
-           <string>Расстояние до &quot;соседей&quot;</string>
+           <string>Distance to neighbors</string>
           </property>
           <widget class="QDoubleSpinBox" name="minimaldistanseUMAP">
            <property name="geometry">
@@ -248,6 +257,9 @@
              <width>191</width>
              <height>22</height>
             </rect>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="decimals">
             <number>2</number>
@@ -284,7 +296,7 @@
           </font>
          </property>
          <property name="title">
-          <string>Настройки модуля кластеризации </string>
+          <string>Clustering</string>
          </property>
          <widget class="QGroupBox" name="groupBox_11">
           <property name="geometry">
@@ -303,7 +315,7 @@
            </font>
           </property>
           <property name="title">
-           <string>Количество &quot;соседей&quot; </string>
+           <string>Number of neighbors</string>
           </property>
           <widget class="QSpinBox" name="nneighboursDBSCAN">
            <property name="geometry">
@@ -313,6 +325,9 @@
              <width>191</width>
              <height>22</height>
             </rect>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="minimum">
             <number>1</number>
@@ -342,7 +357,7 @@
            </font>
           </property>
           <property name="title">
-           <string>Расстояние до &quot;соседей&quot;</string>
+           <string>Distance to neighbors</string>
           </property>
           <widget class="QDoubleSpinBox" name="minimaldistanseDBSCAN">
            <property name="geometry">
@@ -352,6 +367,9 @@
              <width>191</width>
              <height>22</height>
             </rect>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="decimals">
             <number>2</number>

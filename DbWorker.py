@@ -16,6 +16,7 @@ class DbWorker:
     defects     = dict() #[id] = [code]              для выходных параметров
     ruNames     = dict() #[id] = [ruName]            для всех параметров
     enNames     = dict() #[id] = [enName]            для всех параметров
+    names       = dict()
     
     limits = {}          #limit[id][0(min)/1(max)]   для всех параметров
     
@@ -48,13 +49,17 @@ class DbWorker:
         cursor.close()
         conn.close()
     
-    def loadData(self, startDate, endDate):
+    def loadData(self, lang, startDate, endDate):
         self.minDate = startDate
         self.maxDate = endDate
         self.loadRNNParameters()
         self.loadParameters()
         self.loadRNNModels()
         self.loadValues()
+        if lang == 'Ru':
+            self.names = self.ruNames
+        else:
+            self.names = self.enNames
         self.isDataLoaded = True
     def loadRNNParameters(self):
         conn = sqlite3.connect(PATH)
@@ -206,7 +211,7 @@ class DbWorker:
         params_row = cursor.fetchone()
         cursor.close()
         conn.close()
-        return self.getParameterName(self.ruNames, params_row[0])
+        return self.getParameterName(self.names, params_row[0])
     def getModelRelevantParameters(self, key):
         conn = sqlite3.connect(PATH)
         cursor = conn.cursor()
@@ -217,7 +222,7 @@ class DbWorker:
         params_row = cursor.fetchall()
         result = list()
         for row_id in range(len(params_row)):
-            result.append(self.getParameterName(self.ruNames, params_row[row_id][0]))
+            result.append(self.getParameterName(self.names, params_row[row_id][0]))
         cursor.close()
         conn.close()
         return result

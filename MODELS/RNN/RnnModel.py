@@ -54,6 +54,8 @@ class RnnModel:
     recall          = 0
     precision       = 0
 
+    language = ''
+
     optimizers = {
         'SGD'       : tensorflow.optimizers.SGD(),
         'Adam'      : tensorflow.optimizers.Adam(),
@@ -65,7 +67,8 @@ class RnnModel:
     }
 
     def __init__(self, **kwargs):
-        if(len(kwargs) > 0):
+        self.language = kwargs['language']
+        if(len(kwargs) > 1):
             self.name = kwargs['name']
             self.initializeModel(kwargs)                
             self.initializeDataframes(kwargs['dbw'])
@@ -93,9 +96,9 @@ class RnnModel:
             self.epochs     = int(kwargs['epochs'])
             self.optimizer  = self.optimizers[kwargs['optimizer']]        
         self.features = []
-        self.features.append(kwargs['dbw'].getIdFromDict(kwargs['dbw'].ruNames, self.defect))
+        self.features.append(kwargs['dbw'].getIdFromDict(kwargs['dbw'].names, self.defect))
         for parameter in self.parameters:
-            self.features.append(kwargs['dbw'].getIdFromDict(kwargs['dbw'].ruNames, parameter))
+            self.features.append(kwargs['dbw'].getIdFromDict(kwargs['dbw'].names, parameter))
     def initializeDataframes(self, dbw):
         df = pandas.DataFrame.from_dict(dbw.allWithDates)
         self.dataframe = df[self.features]
@@ -117,7 +120,7 @@ class RnnModel:
             self.RMSE   = self.history.history['root_mean_squared_error'][len(self.history.history['root_mean_squared_error'])-1]
             self.MAPE   = self.history.history['mean_absolute_percentage_error'][len(self.history.history['mean_absolute_percentage_error'])-1]
         
-        TP, FP, TN, FN  = self.getClassifiers(dbw, dbw.getDefectThreshold(dbw.getIdFromDict(dbw.ruNames, self.defect)))
+        TP, FP, TN, FN  = self.getClassifiers(dbw, dbw.getDefectThreshold(dbw.getIdFromDict(dbw.names, self.defect)))
         if (TP + FP) == 0:
             self.precision  = 1
         else:
@@ -133,23 +136,32 @@ class RnnModel:
         self.getRocAuc(dbw)
         return True
     def getDescription(self, dbw):
-        return (f"Модель: {self.name}.\n\n"
+        if self.language == 'Ru':
+            return (f"Модель: {self.name}.\n\n"
                 f"Модель обучена для прогнозирования:\n  ['{self.defect}'].\n\nC учетом влияния следующих параметров:\n  {self.parameters}.\n\n" 
                 f"Модель обучена на данных от {dbw.getFromModelDate(self.key)} до {dbw.getToModelDate(self.key)}\n\n"
                 f"Параметры модели: \n"
                 f"  Оптимизатор: {dbw.getIdFromDict(self.optimizers, self.optimizer)};\n"
                 f"  Размер пакета: {self.batch};\n"
                 f"  Число эпох: {self.epochs}.")
+        else:
+            return (f"Model: {self.name}.\n\n"
+                f"Model trained for prediction:\n  ['{self.defect}'].\n\nC учетом влияния следующих параметров:\n  {self.parameters}.\n\n" 
+                f"Model trained on dataset from {dbw.getFromModelDate(self.key)} to {dbw.getToModelDate(self.key)}\n\n"
+                f"Model parameters: \n"
+                f"  Optimizer: {dbw.getIdFromDict(self.optimizers, self.optimizer)};\n"
+                f"  Batch size: {self.batch};\n"
+                f"  Epochs: {self.epochs}.")
 
     def learn(self, dbw):
-        window = WindowGenerator(128, 128, 1, self.train_df, self.val_df, self.test_df, self.batch, [dbw.getIdFromDict(dbw.ruNames, self.defect)], False)
+        window = WindowGenerator(128, 128, 1, self.train_df, self.val_df, self.test_df, self.batch, [dbw.getIdFromDict(dbw.names, self.defect)], False)
         self.lstm_model.compile(loss=tensorflow.losses.MeanSquaredError(), optimizer=self.optimizer,
                                 metrics=[tensorflow.metrics.MeanSquaredError(), tensorflow.metrics.RootMeanSquaredError(),
                                         tensorflow.metrics.MeanAbsoluteError(), tensorflow.metrics.MeanAbsolutePercentageError()])
         self.history = self.lstm_model.fit(window.train, epochs=self.epochs, validation_data=window.val)
         return True
     def forecast(self, dbw, state):
-        wide_window = WindowGenerator(len(self.dataframe), len(self.dataframe), 0, self.full_df, self.val_df, self.test_df, self.batch, [dbw.getIdFromDict(dbw.ruNames, self.defect)], False)
+        wide_window = WindowGenerator(len(self.dataframe), len(self.dataframe), 0, self.full_df, self.val_df, self.test_df, self.batch, [dbw.getIdFromDict(dbw.names, self.defect)], False)
         inputs = wide_window.example
         predictions = self.lstm_model.predict(inputs)
         real = list()
@@ -158,8 +170,8 @@ class RnnModel:
         result = predictions[0, :, 0]
         self.resultReal = self.dataframe.copy(deep=True)
         self.resultForecast = self.dataframe.copy(deep=True)
-        self.resultReal[dbw.getIdFromDict(dbw.ruNames, self.defect)] = real
-        self.resultForecast[dbw.getIdFromDict(dbw.ruNames, self.defect)] = result
+        self.resultReal[dbw.getIdFromDict(dbw.names, self.defect)] = real
+        self.resultForecast[dbw.getIdFromDict(dbw.names, self.defect)] = result
         for feat in self.features:
             self.resultReal[[feat]] = self.unscale(self.resultReal[[feat]], self.rawDataframe[[feat]].max(), self.rawDataframe[[feat]].min(), 1, -1)
             self.resultForecast[[feat]] = self.unscale(self.resultForecast[[feat]], self.rawDataframe[[feat]].max(), self.rawDataframe[[feat]].min(), 1, -1) 
@@ -190,9 +202,14 @@ class RnnModel:
         pyplot.plot([0, 1], [0, 1])
         pyplot.xlim([-0.1, 1.1])
         pyplot.ylim([-0.1, 1.1])
-        pyplot.xlabel('Доля ложных положительных классификаций')
-        pyplot.ylabel('Доля верных положительных классификаций')
-        pyplot.title('ROC кривая')
+        if self.language == 'Ru':
+            pyplot.xlabel('Доля ложных положительных классификаций')
+            pyplot.ylabel('Доля верных положительных классификаций')
+            pyplot.title('ROC кривая')
+        else:
+            pyplot.xlabel('False Positive Rate')
+            pyplot.ylabel('True Positive Rate')
+            pyplot.title('ROC-curve')
         pyplot.show()
     def showSourceDataTrends(self, dbw):
         fig = pyplot.figure(figsize=(10, len(self.features) * 2))
@@ -200,19 +217,30 @@ class RnnModel:
         for i in range(len(self.features)):
             ax = fig.add_subplot(gs[i, 0])
             pyplot.plot(self.rawDataframe.index.values, self.rawDataframe[self.features[i]])
-            ax.set_title(dbw.getParameterName(dbw.ruNames, self.features[i]))
+            ax.set_title(dbw.getParameterName(dbw.names, self.features[i]))
             ax.set_ylabel(dbw.getParameterUnit(self.features[i]))
-            ax.set_xlabel("Время")
+            if self.language == 'Ru':
+                ax.set_xlabel("Время")
+            else:
+                ax.set_xlabel("Time")
         fig.tight_layout()
         pyplot.show()
     def showResultDataTrends(self, dbw):
         matplotlib.rcParams['figure.figsize'] = (10, 5)
         matplotlib.rcParams['axes.grid'] = True
-        pyplot.plot(self.resultReal.index.values, self.resultReal[dbw.getIdFromDict(dbw.ruNames, self.defect)], label='Реальное значение дефекта')
-        pyplot.plot(self.resultForecast.index.values, self.resultForecast[dbw.getIdFromDict(dbw.ruNames, self.defect)], label='Предсказанное значение дефекта')
-        pyplot.axhline(dbw.getDefectThreshold(dbw.getIdFromDict(dbw.ruNames, self.defect)), label='Регламентное ограничение', Color='#000000')
-        pyplot.ylabel(dbw.getParameterUnit(dbw.getIdFromDict(dbw.ruNames, self.defect)))
-        pyplot.xlabel("Время")
+        if self.language == 'Ru':
+            pyplot.plot(self.resultReal.index.values, self.resultReal[dbw.getIdFromDict(dbw.names, self.defect)], label='Реальное значение дефекта')
+            pyplot.plot(self.resultForecast.index.values, self.resultForecast[dbw.getIdFromDict(dbw.names, self.defect)], label='Предсказанное значение дефекта')
+            pyplot.axhline(dbw.getDefectThreshold(dbw.getIdFromDict(dbw.names, self.defect)), label='Регламентное ограничение', Color='#000000')
+        else:
+            pyplot.plot(self.resultReal.index.values, self.resultReal[dbw.getIdFromDict(dbw.names, self.defect)], label='Real values')
+            pyplot.plot(self.resultForecast.index.values, self.resultForecast[dbw.getIdFromDict(dbw.names, self.defect)], label='Predicted values')
+            pyplot.axhline(dbw.getDefectThreshold(dbw.getIdFromDict(dbw.names, self.defect)), label='Regulatory restriction', Color='#000000')
+        pyplot.ylabel(dbw.getParameterUnit(dbw.getIdFromDict(dbw.names, self.defect)))
+        if self.language == 'Ru':
+            pyplot.xlabel("Время")
+        else:
+            pyplot.xlabel("Time")
         pyplot.title(self.defect)
         pyplot.gca().legend(loc='upper left')
         pyplot.show()
@@ -223,34 +251,62 @@ class RnnModel:
         fig = pyplot.figure(figsize=(10, 10))
         gs = fig.add_gridspec(2, 2)
         ax = fig.add_subplot(gs[0, 0])
-        pyplot.plot(epochs, self.history.history['mean_absolute_error'], label='обучение')
-        pyplot.plot(epochs, self.history.history['val_mean_absolute_error'], label='валидация')
+        if self.language == 'Ru':
+            pyplot.plot(epochs, self.history.history['mean_absolute_error'], label='обучение')
+            pyplot.plot(epochs, self.history.history['val_mean_absolute_error'], label='валидация')
+        else:
+            pyplot.plot(epochs, self.history.history['mean_absolute_error'], label='learning')
+            pyplot.plot(epochs, self.history.history['val_mean_absolute_error'], label='validation')
         ax.set_title("MAE")
-        ax.set_xlabel("Эпоха")
+        if self.language == 'Ru':
+            ax.set_xlabel("Эпоза")
+        else:
+            ax.set_xlabel("Epoch")
         ax.legend(loc='upper left')
         ax = fig.add_subplot(gs[0, 1])
-        pyplot.plot(epochs, self.history.history['mean_absolute_percentage_error'], label='обучение')
-        pyplot.plot(epochs, self.history.history['val_mean_absolute_percentage_error'], label='валидация')
+        if self.language == 'Ru':
+            pyplot.plot(epochs, self.history.history['mean_absolute_percentage_error'], label='обучение')
+            pyplot.plot(epochs, self.history.history['val_mean_absolute_percentage_error'], label='валидация')
+        else:
+            pyplot.plot(epochs, self.history.history['mean_absolute_percentage_error'], label='learning')
+            pyplot.plot(epochs, self.history.history['val_mean_absolute_percentage_error'], label='validation')
         ax.set_title("MAPE")
-        ax.set_xlabel("Эпоха")
+        if self.language == 'Ru':
+            ax.set_xlabel("Эпоза")
+        else:
+            ax.set_xlabel("Epoch")
         ax.legend(loc='upper left')
         ax = fig.add_subplot(gs[1, 0])
-        pyplot.plot(epochs, self.history.history['mean_squared_error'], label='обучение')
-        pyplot.plot(epochs, self.history.history['val_mean_squared_error'], label='валидация')
+        if self.language == 'Ru':
+            pyplot.plot(epochs, self.history.history['mean_squared_error'], label='обучение')
+            pyplot.plot(epochs, self.history.history['val_mean_squared_error'], label='валидация')
+        else:
+            pyplot.plot(epochs, self.history.history['mean_squared_error'], label='learning')
+            pyplot.plot(epochs, self.history.history['val_mean_squared_error'], label='validation')
         ax.set_title("MSE")
-        ax.set_xlabel("Эпоха")
+        if self.language == 'Ru':
+            ax.set_xlabel("Эпоза")
+        else:
+            ax.set_xlabel("Epoch")
         ax.legend(loc='upper left')
         ax = fig.add_subplot(gs[1, 1])
-        pyplot.plot(epochs, self.history.history['root_mean_squared_error'], label='обучение')
-        pyplot.plot(epochs, self.history.history['val_root_mean_squared_error'], label='валидация')
+        if self.language == 'Ru':
+            pyplot.plot(epochs, self.history.history['root_mean_squared_error'], label='обучение')
+            pyplot.plot(epochs, self.history.history['val_root_mean_squared_error'], label='валидация')
+        else:
+            pyplot.plot(epochs, self.history.history['root_mean_squared_error'], label='learning')
+            pyplot.plot(epochs, self.history.history['val_root_mean_squared_error'], label='validation')
         ax.set_title("RMSE")
-        ax.set_xlabel("Эпоха")
+        if self.language == 'Ru':
+            ax.set_xlabel("Эпоза")
+        else:
+            ax.set_xlabel("Epoch")
         ax.legend(loc='upper left')
         fig.tight_layout()
         pyplot.show()   
 
     def getRocAuc(self, dbw):
-        thresholds = numpy.linspace(0, dbw.getDefectThreshold(dbw.getIdFromDict(dbw.ruNames, self.defect)))
+        thresholds = numpy.linspace(0, dbw.getDefectThreshold(dbw.getIdFromDict(dbw.names, self.defect)))
         for i in thresholds:            
             TP, FP, TN, FN = self.getClassifiers(dbw, i)
             if (TP + FN) != 0:
@@ -273,13 +329,13 @@ class RnnModel:
         TN = 0
         FN = 0
         for i in range(len(self.testForecast)):
-            if self.testForecast[dbw.getIdFromDict(dbw.ruNames, self.defect)][i] >= threshold:
-                if self.testReal[dbw.getIdFromDict(dbw.ruNames, self.defect)][i] >= threshold:
+            if self.testForecast[dbw.getIdFromDict(dbw.names, self.defect)][i] >= threshold:
+                if self.testReal[dbw.getIdFromDict(dbw.names, self.defect)][i] >= threshold:
                     TN = TN + 1
                 else:
                     FN = FN + 1
             else:
-                if self.testReal[dbw.getIdFromDict(dbw.ruNames, self.defect)][i] < threshold:
+                if self.testReal[dbw.getIdFromDict(dbw.names, self.defect)][i] < threshold:
                     TP = TP + 1
                 else:
                     FP = FP + 1

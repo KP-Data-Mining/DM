@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>MainWindow_Eng</class>
+ <widget class="QMainWindow" name="MainWindow_Eng">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -64,7 +64,7 @@
        </property>
        <widget class="QWidget" name="TSA_tab">
         <attribute name="title">
-         <string>Анализ временных рядов</string>
+         <string>Time series analysis</string>
         </attribute>
         <widget class="QWidget" name="verticalLayoutWidget_2">
          <property name="geometry">
@@ -79,7 +79,7 @@
           <item>
            <widget class="QGroupBox" name="ParametersGroupboxTSA">
             <property name="title">
-             <string>Выбор технологических параметров для проведения анализа</string>
+             <string>Selecting parameters</string>
             </property>
             <widget class="QWidget" name="gridLayoutWidget_5">
              <property name="geometry">
@@ -115,7 +115,7 @@
               </size>
              </property>
              <property name="title">
-              <string>Запуск вычислений</string>
+              <string>Start</string>
              </property>
              <widget class="QWidget" name="gridLayoutWidget_2">
               <property name="geometry">
@@ -133,7 +133,7 @@
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="text">
-                  <string>Начать</string>
+                  <string>Calculate</string>
                  </property>
                 </widget>
                </item>
@@ -159,7 +159,7 @@
               </size>
              </property>
              <property name="title">
-              <string>Контрольная панель</string>
+              <string>Control panel</string>
              </property>
              <widget class="QWidget" name="gridLayoutWidget">
               <property name="geometry">
@@ -174,7 +174,7 @@
                <item row="0" column="1">
                 <widget class="QLabel" name="FeaturesDataLabelTSA">
                  <property name="text">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Статистические &lt;br/&gt;характеристики&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Statistical &lt;br/&gt;characteristics&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -183,24 +183,30 @@
                </item>
                <item row="1" column="1">
                 <widget class="QPushButton" name="FeaturesDataButtonTSA">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
                  <property name="text">
-                  <string>Показать</string>
+                  <string>Show</string>
                  </property>
                 </widget>
                </item>
                <item row="1" column="2">
                 <widget class="QPushButton" name="ClusterDataButtonTSA">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
                  <property name="text">
-                  <string>Показать</string>
+                  <string>Show</string>
                  </property>
                 </widget>
                </item>
                <item row="0" column="2">
                 <widget class="QLabel" name="ClusterDataLabelTSA">
                  <property name="text">
-                  <string>Кластеризация
-статистических
-характеристик</string>
+                  <string>Clustering of
+statistical
+characteristics</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -229,7 +235,7 @@
               </size>
              </property>
              <property name="title">
-              <string>Контрольная панель (Управляющие воздействия</string>
+              <string>Control panel (control parameters)</string>
              </property>
              <widget class="QWidget" name="gridLayoutWidget_9">
               <property name="geometry">
@@ -247,8 +253,8 @@
                   <bool>false</bool>
                  </property>
                  <property name="text">
-                  <string>Временные ряды
-управляющих воздействий</string>
+                  <string>Parameters
+time series</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -261,9 +267,8 @@
                   <bool>true</bool>
                  </property>
                  <property name="text">
-                  <string>Кластеризация
-управляющих
-воздействий</string>
+                  <string>Clustering of
+control parameters</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -275,8 +280,11 @@
                  <property name="enabled">
                   <bool>true</bool>
                  </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
                  <property name="text">
-                  <string>Показать</string>
+                  <string>Show</string>
                  </property>
                 </widget>
                </item>
@@ -285,8 +293,11 @@
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
                  <property name="text">
-                  <string>Показать</string>
+                  <string>Show</string>
                  </property>
                 </widget>
                </item>
@@ -314,25 +325,9 @@
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
          <property name="text">
-          <string>Настройка моделей</string>
+          <string>Settings</string>
          </property>
         </widget>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Minimum</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </item>

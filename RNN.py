@@ -10,17 +10,29 @@ from PyQt5.QtWidgets import *
 from DbWorker import DbWorker
 from MODELS.RNN.RnnModel import RnnModel
 
-from VIEWS.RNN.MainWindow import Ui_MainWindow
-from VIEWS.RNN.DatabaseWindow import Ui_DatabaseWindow
-from VIEWS.RNN.AdministratorWindow import Ui_AdministratorWindow
+from VIEWS.RNN.MainWindow_Ru import Ui_MainWindow_Ru
+from VIEWS.RNN.DatabaseWindow_Ru import Ui_DatabaseWindow_Ru
+from VIEWS.RNN.AdministratorWindow_Ru import Ui_AdministratorWindow_Ru
+
+from VIEWS.RNN.MainWindow_Eng import Ui_MainWindow_Eng
+from VIEWS.RNN.DatabaseWindow_Eng import Ui_DatabaseWindow_Eng
+from VIEWS.RNN.AdministratorWindow_Eng import Ui_AdministratorWindow_Eng
 
 init(autoreset=True)
 
 app = QtWidgets.QApplication(sys.argv)
 
-mainUI          = Ui_MainWindow()
-databaseUI      = Ui_DatabaseWindow()
-administratorUI = Ui_AdministratorWindow()
+file = open('settings.json')
+settings = json.load(file)
+
+if settings['Language'] == 'Ru':
+    mainUI          = Ui_MainWindow_Ru()
+    databaseUI      = Ui_DatabaseWindow_Ru()
+    administratorUI = Ui_AdministratorWindow_Ru()
+else:
+    mainUI          = Ui_MainWindow_Eng()
+    databaseUI      = Ui_DatabaseWindow_Eng()
+    administratorUI = Ui_AdministratorWindow_Eng()
 
 DatabaseWindow      = QtWidgets.QDialog()
 AdministratorWindow = QtWidgets.QDialog()
@@ -37,7 +49,7 @@ def thread(my_func):
     return wrapper
 
 dbw = DbWorker()
-rnn = RnnModel()
+rnn = RnnModel(language=settings['Language'])
 
 def openMainWindow():
     initializeActions(mainUI)
@@ -55,19 +67,19 @@ def openAdministratorWindow():
     AdministratorWindow.show()
 
 def initializeLists(ui):
-    if type(ui) == Ui_AdministratorWindow:
-        administratorUI.QualitIndicatorComboBoxRNN.addItems(dbw.getNames(dbw.ruNames, dbw.defects))
-        addCheckableItems(administratorUI.RelevantFeaturesRNN, dbw.getNames(dbw.ruNames, dbw.features))
+    if type(ui) == Ui_AdministratorWindow_Ru or type(ui) == Ui_AdministratorWindow_Eng:
+        administratorUI.QualitIndicatorComboBoxRNN.addItems(dbw.getNames(dbw.names, dbw.defects))
+        addCheckableItems(administratorUI.RelevantFeaturesRNN, dbw.getNames(dbw.names, dbw.features))
         administratorUI.OptimizerComboBoxRNN.addItems(dbw.optimizers.values())
         administratorUI.BatchComboBoxRNN.addItems(dbw.batches.values())
         administratorUI.EpochsComboBoxRNN.addItems(dbw.epochs.values())
-    if type(ui) == Ui_MainWindow:
+    if type(ui) == Ui_MainWindow_Ru or type(ui) == Ui_MainWindow_Eng:
         mainUI.ModelComboBoxRNN.addItems(dbw.models.values())
-    if type(ui) == Ui_DatabaseWindow:
+    if type(ui) == Ui_DatabaseWindow_Ru or type(ui) == Ui_DatabaseWindow_Eng:
         addTableItems()
 
 def initializeActions(ui):
-    if type(ui) == Ui_AdministratorWindow:
+    if type(ui) == Ui_AdministratorWindow_Ru or type(ui) == Ui_AdministratorWindow_Eng:
         administratorUI.RocTrendButtonRNN.clicked.connect(showRoc)
         administratorUI.RelevantFeaturesRNN.clicked.connect(clearUI)
         administratorUI.MetricsButtonRNN.clicked.connect(showHistory)
@@ -80,7 +92,7 @@ def initializeActions(ui):
         administratorUI.OptimizerComboBoxRNN.currentIndexChanged.connect(clearUI)
         administratorUI.StartTrendsButtonRNN.clicked.connect(showSourceTrendsLearn)
         administratorUI.QualitIndicatorComboBoxRNN.currentIndexChanged.connect(clearUI)
-    if type(ui) == Ui_MainWindow:
+    if type(ui) == Ui_MainWindow_Ru or type(ui) == Ui_MainWindow_Eng:
         mainUI.RocTrendButtonRNN.clicked.connect(showRoc)
         mainUI.loadModelButtonRNN.clicked.connect(selectModel)
         mainUI.StartButtonRNN.clicked.connect(lambda: forecast())
@@ -88,13 +100,13 @@ def initializeActions(ui):
         mainUI.ResultTrendsButtonRNN.clicked.connect(showResultTrends)
         mainUI.administrator_button.clicked.connect(openAdministratorWindow)
         mainUI.StartTrendsButtonRNN.clicked.connect(showSourceTrendsForecast)
-    if type(ui) == Ui_DatabaseWindow:
+    if type(ui) == Ui_DatabaseWindow_Ru or type(ui) == Ui_DatabaseWindow_Eng:
         databaseUI.deleteButton.clicked.connect(deleteModel)
 def initializeUi(ui):
-    if type(ui) == Ui_AdministratorWindow:
+    if type(ui) == Ui_AdministratorWindow_Ru or type(ui) == Ui_AdministratorWindow_Eng:
         administratorUI.progressBar.setMinimum(0)
         administratorUI.progressBar.setValue(0)
-    if type(ui) == Ui_MainWindow:
+    if type(ui) == Ui_MainWindow_Ru or type(ui) == Ui_MainWindow_Eng:
         mainUI.progressBar.setMinimum(0)
         mainUI.progressBar.setValue(0)
 
@@ -105,7 +117,7 @@ def showRoc():
     rnn.showRocTrend()
 def clearUI():
     global rnn
-    rnn = RnnModel()
+    rnn = RnnModel(language=settings['Language'])
     administratorUI.ResultTrendsButtonRNN.setEnabled(False)
     administratorUI.ModelNameLineEditRNN.setEnabled(False)
     administratorUI.SaveModelButtonRNN.setEnabled(False)
@@ -150,7 +162,7 @@ def learnModel():
     
     if validateParameters():
         global rnn
-        rnn = RnnModel(name="", dbw=dbw, parameters=getCheckedParameters(administratorUI.RelevantFeaturesRNN),
+        rnn = RnnModel(language=settings['Language'], name="", dbw=dbw, parameters=getCheckedParameters(administratorUI.RelevantFeaturesRNN),
                                     defect=administratorUI.QualitIndicatorComboBoxRNN.currentText(),
                                     optimizer=administratorUI.OptimizerComboBoxRNN.currentText(),
                                     epochs=administratorUI.EpochsComboBoxRNN.currentText(),
@@ -206,7 +218,7 @@ def validateParameters():
 def showHistory():
     rnn.showHistoryTrends()
 def showSourceTrendsLearn():
-    tmpRnn = RnnModel(name="", dbw=dbw, parameters=getCheckedParameters(administratorUI.RelevantFeaturesRNN),
+    tmpRnn = RnnModel(language=settings['Language'], name="", dbw=dbw, parameters=getCheckedParameters(administratorUI.RelevantFeaturesRNN),
                                     defect=administratorUI.QualitIndicatorComboBoxRNN.currentText(),
                                     optimizer=administratorUI.OptimizerComboBoxRNN.currentText(),
                                     epochs=administratorUI.EpochsComboBoxRNN.currentText(),
@@ -258,10 +270,8 @@ def addTableItems():
         row+=1
 #DataLoad
 def loadData():
-    file = open('settings.json')
-    dates = json.load(file)
     print("Начало загрузки данных...")
-    dbw.loadData(str(dates['FromDateTime']), str(dates['ToDateTime']))
+    dbw.loadData(settings['Language'], str(settings['FromDateTime']), str(settings['ToDateTime']))
     print(Fore.GREEN + "Данные успешно загружены")
 
 #Main
@@ -271,7 +281,7 @@ def selectModel():
         clearUI()
         global rnn
         selectedModel = mainUI.ModelComboBoxRNN.currentText()
-        rnn = RnnModel(dbw=dbw, name=selectedModel)
+        rnn = RnnModel(language=settings['Language'], dbw=dbw, name=selectedModel)
         mainUI.ModelDescriptionTextRNN.setText(rnn.getDescription(dbw))
         mainUI.ResultTrendsButtonRNN.setEnabled(False)
         mainUI.StartTrendsButtonRNN.setEnabled(True)
