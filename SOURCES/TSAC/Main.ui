@@ -183,6 +183,9 @@
                </item>
                <item row="1" column="1">
                 <widget class="QPushButton" name="FeaturesDataButtonTSA">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
                  <property name="text">
                   <string>Показать</string>
                  </property>
@@ -190,6 +193,9 @@
                </item>
                <item row="1" column="2">
                 <widget class="QPushButton" name="ClusterDataButtonTSA">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
                  <property name="text">
                   <string>Показать</string>
                  </property>
@@ -229,7 +235,7 @@
               </size>
              </property>
              <property name="title">
-              <string>Контрольная панель (Управляющие воздействия</string>
+              <string>Контрольная панель (Управляющие воздействия)</string>
              </property>
              <widget class="QWidget" name="gridLayoutWidget_9">
               <property name="geometry">
@@ -275,6 +281,9 @@
                  <property name="enabled">
                   <bool>true</bool>
                  </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
                  <property name="text">
                   <string>Показать</string>
                  </property>
@@ -284,6 +293,9 @@
                 <widget class="QPushButton" name="RawDataButtonTSA">
                  <property name="enabled">
                   <bool>false</bool>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="text">
                   <string>Показать</string>
@@ -317,22 +329,6 @@
           <string>Настройка моделей</string>
          </property>
         </widget>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Minimum</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </item>
