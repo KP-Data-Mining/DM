@@ -87,7 +87,7 @@
                <x>10</x>
                <y>20</y>
                <width>471</width>
-               <height>251</height>
+               <height>331</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_5">
@@ -98,65 +98,6 @@
                <widget class="QListWidget" name="ParametersTSA"/>
               </item>
              </layout>
-            </widget>
-            <widget class="QGroupBox" name="TimeDiapazonTSA">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>280</y>
-               <width>489</width>
-               <height>80</height>
-              </rect>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>489</width>
-               <height>80</height>
-              </size>
-             </property>
-             <property name="title">
-              <string>Выбор временного интервала</string>
-             </property>
-             <widget class="QWidget" name="gridLayoutWidget_3">
-              <property name="geometry">
-               <rect>
-                <x>10</x>
-                <y>20</y>
-                <width>471</width>
-                <height>51</height>
-               </rect>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_3">
-               <item row="1" column="0">
-                <widget class="QDateTimeEdit" name="FromDateTimeTSA">
-                 <property name="cursor">
-                  <cursorShape>IBeamCursor</cursorShape>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QLabel" name="EndDateLabelTSA">
-                 <property name="text">
-                  <string>Конечная дата</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QDateTimeEdit" name="ToDateTimeTSA">
-                 <property name="cursor">
-                  <cursorShape>IBeamCursor</cursorShape>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="0">
-                <widget class="QLabel" name="StartDateLabelTSA">
-                 <property name="text">
-                  <string>Начальная дата</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
             </widget>
             <widget class="QGroupBox" name="StartGroupBoxTSA">
              <property name="geometry">
