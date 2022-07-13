@@ -6,6 +6,7 @@
 *.html
 *.db
 !tooltips.html
+!MODELS/DBSCAN/Crossfilter/templates/index.html
 
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
