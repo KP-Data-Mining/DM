@@ -221,10 +221,16 @@ def ViewCompresClustersOfBase():
         timeseries = pd.DataFrame({'time': pd.Series(dbw.dates)})
         for i in range(len(SelectedParametersIndexesTSA)):
             newparamlist = dbw.x[SelectedParametersIndexesTSA[i]]
-            timeseries[SelectedParametersNamesTSA[i]] = newparamlist
+            timeseries[SelectedParametersNamesTSA[i]
+                       + ", " +
+                       dbw.getParameterUnit(SelectedParametersIndexesTSA[i])] = newparamlist
         timeseries = timeseries[timeseries['time'].between(str(settings['FromDateTime']),
                                                            str(settings['ToDateTime']))]
-        defects = [defect[0] for defect in pd.DataFrame({str(SelectedOutputParameterNameTSA): pd.Series(dbw.y[SelectedOutputParameterIndexTSA])}).to_numpy(np.float32)]
+        defects = [defect[0]
+                   for defect
+                   in pd.DataFrame({str(SelectedOutputParameterNameTSA):
+                                        pd.Series(dbw.y[SelectedOutputParameterIndexTSA])}).to_numpy(np.float32)
+                   ]
         points = np.array(Compression.CompressingData(timeseries.drop(columns=['time']),
                                                       n_neighbors=tsa.nneighboursUMAP,
                                                       min_dist=tsa.minimaldistanseUMAP))
@@ -233,7 +239,7 @@ def ViewCompresClustersOfBase():
         info = timeseries
 
         pd.DataFrame(defects, columns=['defects']).to_csv('2.csv', index_label='index')
-        timeseries.join(pd.DataFrame(labels, columns=["Кластер"])).to_csv('3.csv', index_label='index')
+        info.join(pd.DataFrame(labels, columns=["Кластер"])).to_csv('3.csv', index_label='index')
 
         Plot.create(points, defects, labels, info, dbw.limits[SelectedOutputParameterIndexTSA])
         plot_window.append(Plot.show())
@@ -250,10 +256,18 @@ def ViewCompresClustersOfTSA():
 
     labels = DataPreparation.GetLabels(points, eps=tsa.minimaldistanseDBSCAN,
                                        min_samples=tsa.nneighboursDBSCAN)
-    info = tsa.timeseries.drop(columns=['id'])[len(tsa.defects) - len(points):].reset_index(drop=True)
+    timeseries = pd.DataFrame({'time': pd.Series(dbw.dates)})
+    for i in range(len(SelectedParametersIndexesTSA)):
+        newparamlist = dbw.x[SelectedParametersIndexesTSA[i]]
+        timeseries[SelectedParametersNamesTSA[i]
+                   + ", " +
+                   dbw.getParameterUnit(SelectedParametersIndexesTSA[i])] = newparamlist
+    timeseries = timeseries[timeseries['time'].between(str(settings['FromDateTime']),
+                                                       str(settings['ToDateTime']))]
+    info = timeseries[len(tsa.defects) - len(points):].reset_index(drop=True)
 
     pd.DataFrame(defects, columns=['defects']).to_csv('2.csv', index_label='index')
-    tsa.timeseries.drop(columns=['id'])[len(tsa.defects) - len(points):].reset_index(drop=True).join(
+    timeseries[len(tsa.defects) - len(points):].reset_index(drop=True).join(
         tsa.filteredfeatures.reset_index(drop=True)).join(
         pd.DataFrame(labels, columns=["Кластер"])).to_csv('3.csv', index_label='index')
 
