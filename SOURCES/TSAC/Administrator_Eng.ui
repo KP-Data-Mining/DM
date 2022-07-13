@@ -57,7 +57,7 @@
    </property>
    <widget class="QWidget" name="TSA_tab">
     <attribute name="title">
-     <string>Time series analysis</string>
+     <string>Settings</string>
     </attribute>
     <widget class="QWidget" name="gridLayoutWidget_3">
      <property name="geometry">
