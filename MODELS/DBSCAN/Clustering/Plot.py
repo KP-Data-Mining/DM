@@ -12,12 +12,13 @@ from bokeh.models import ColumnDataSource, Legend, LegendItem, TapTool, OpenURL
 
 
 def show():
-    p = Popen(['bokeh', 'serve', "crossfilter"], shell=True)
+    p = Popen(['bokeh', 'serve', "MODELS\\DBSCAN\\Crossfilter"], shell=True)
     window = PlotWindow(link="file:///TSAC.html", server=p)
     return window
 
 
-def create(df_points, df_defects, df_labels, df_info, defect_limit=75):
+def create(df_points, df_defects, df_labels, df_info, defect_limit=75, title="Plot", x_axis_label="X",
+           y_axis_label="Y"):
     df_info = df_info.T
     df_info_html = [pandas.DataFrame(df_info[i]).to_html(header=False) for i in range(len(df_points))]
     markers = ["star" if defect > defect_limit else "circle" for defect in df_defects]
@@ -40,8 +41,8 @@ def create(df_points, df_defects, df_labels, df_info, defect_limit=75):
     width = GetSystemMetrics(0) - round(GetSystemMetrics(0) * 0.03)
     height = GetSystemMetrics(1) - round(GetSystemMetrics(1) * 0.10)
 
-    plot = figure(title=None, width=width, height=height, min_border=0, toolbar_location="right", tools=TOOLS,
-                  tooltips=TOOLTIPS)
+    plot = figure(title=title, width=width, height=height, min_border=0, toolbar_location="right", tools=TOOLS,
+                  tooltips=TOOLTIPS, x_axis_label=x_axis_label, y_axis_label=y_axis_label)
     r = plot.scatter(x="x", y="y", size="sizes", line_color='black', fill_color="fill_color", fill_alpha=1,
                      line_width=0.9, marker='marker', source=source)
     arr = []
@@ -57,7 +58,7 @@ def create(df_points, df_defects, df_labels, df_info, defect_limit=75):
     plot.legend.glyph_width = 80
     plot.legend.label_text_font_size = "1.6em"
 
-    url = "http://localhost:5006/crossfilter/?cluster=@labels"
+    url = "http://localhost:5006/Crossfilter/?cluster=@labels"
     tap_tool = plot.select(type=TapTool)
     tap_tool.callback = OpenURL(url=url, same_tab=True)
     curdoc().add_root(plot)

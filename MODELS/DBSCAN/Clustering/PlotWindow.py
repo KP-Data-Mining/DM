@@ -1,3 +1,5 @@
+import os
+
 from PyQt5.QtCore import QUrl
 from PyQt5.QtGui import QWindow
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEnginePage
@@ -65,3 +67,11 @@ class PlotWindow(QWidget):
         self.setLayout(vbox)
         self.setWindowTitle('Визуализация')
         self.show()
+
+    def closeEvent(self, a0: QtGui.QCloseEvent):
+        if os.path.exists('2.csv'):
+            os.remove('2.csv')
+        if os.path.exists('3.csv'):
+            os.remove('3.csv')
+        if os.path.exists('TSAC.html'):
+            os.remove('TSAC.html')
