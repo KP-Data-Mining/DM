@@ -1,3 +1,4 @@
+import os
 import sys
 import json
 import threading
@@ -295,6 +296,12 @@ def getCheckedParameters(ui):
     return result
 
 if __name__ == "__main__":
+    if os.path.exists('2.csv'):
+        os.remove('2.csv')
+    if os.path.exists('3.csv'):
+        os.remove('3.csv')
+    if os.path.exists('TSAC.html'):
+        os.remove('TSAC.html')
     loadData()
     if dbw.isDataLoaded:
         openMainWindow()
