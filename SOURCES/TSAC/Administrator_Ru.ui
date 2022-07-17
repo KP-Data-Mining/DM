@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AdministratorWindow</class>
- <widget class="QWidget" name="AdministratorWindow">
+ <class>AdministratorWindow_Ru</class>
+ <widget class="QWidget" name="AdministratorWindow_Ru">
   <property name="enabled">
    <bool>true</bool>
   </property>

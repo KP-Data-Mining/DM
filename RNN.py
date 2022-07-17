@@ -10,6 +10,8 @@ from PyQt5.QtWidgets import *
 from DbWorker import DbWorker
 from MODELS.RNN.RnnModel import RnnModel
 
+from VIEWS.ProgressBar import Ui_ProgressBarWindow
+
 from VIEWS.RNN.MainWindow_Ru import Ui_MainWindow_Ru
 from VIEWS.RNN.DatabaseWindow_Ru import Ui_DatabaseWindow_Ru
 from VIEWS.RNN.AdministratorWindow_Ru import Ui_AdministratorWindow_Ru
@@ -33,13 +35,16 @@ else:
     mainUI          = Ui_MainWindow_Eng()
     databaseUI      = Ui_DatabaseWindow_Eng()
     administratorUI = Ui_AdministratorWindow_Eng()
+progressBarUI = Ui_ProgressBarWindow()
 
 DatabaseWindow      = QtWidgets.QDialog()
 AdministratorWindow = QtWidgets.QDialog()
+ProgressWindow      = QtWidgets.QDialog()
 MainWindow          = QtWidgets.QMainWindow()
 
 mainUI.setupUi(MainWindow)
 databaseUI.setupUi(DatabaseWindow)
+progressBarUI.setupUi(ProgressWindow)
 administratorUI.setupUi(AdministratorWindow)
 
 def thread(my_func):
@@ -51,11 +56,17 @@ def thread(my_func):
 dbw = DbWorker()
 rnn = RnnModel(language=settings['Language'])
 
+def openProgressWindow():
+    progressBarUI.progressBar.setValue(0)
+    progressBarUI.progressBar.setMaximum(0)
+    loadData()
+    ProgressWindow.exec_()
 def openMainWindow():
     initializeActions(mainUI)
     initializeLists(mainUI)
     initializeUi(mainUI)
     MainWindow.show()
+    ProgressWindow.close()
 def openDatabaseWindow():
     initializeActions(databaseUI)
     initializeLists(databaseUI)
@@ -269,10 +280,12 @@ def addTableItems():
         databaseUI.modelsTable.setItem(row, 3, QtWidgets.QTableWidgetItem(i[3]))
         row+=1
 #DataLoad
+@thread
 def loadData():
     print("Начало загрузки данных...")
     dbw.loadData(settings['Language'], str(settings['FromDateTime']), str(settings['ToDateTime']))
     print(Fore.GREEN + "Данные успешно загружены")
+    ProgressWindow.close()
 
 #Main
 def selectModel():
@@ -344,7 +357,7 @@ def getCheckedParameters(ui):
     return result
 
 if __name__ == "__main__":
-    loadData()
+    openProgressWindow()
     if dbw.isDataLoaded:
         openMainWindow()
         sys.exit(app.exec_())

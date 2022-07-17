@@ -10,6 +10,8 @@ from PyQt5.QtWidgets import *
 
 from DbWorker import DbWorker
 
+from VIEWS.ProgressBar import Ui_ProgressBarWindow
+
 from VIEWS.TSAC.MainWindow_Ru import Ui_MainWindow_Ru
 from VIEWS.TSAC.AdministratorWindow_Ru import Ui_AdministratorWindow_Ru
 
@@ -50,11 +52,14 @@ if settings['Language'] == 'Ru':
 else:
     mainUI          = Ui_MainWindow_Eng()
     administratorUI = Ui_AdministratorWindow_Eng()
+progressBarUI = Ui_ProgressBarWindow()
 
 AdministratorWindow = QtWidgets.QDialog()
+ProgressWindow      = QtWidgets.QDialog()
 MainWindow          = QtWidgets.QMainWindow()
 
 mainUI.setupUi(MainWindow)
+progressBarUI.setupUi(ProgressWindow)
 administratorUI.setupUi(AdministratorWindow)
 
 def thread(my_func):
@@ -65,6 +70,11 @@ def thread(my_func):
 
 dbw = DbWorker()
 
+def openProgressWindow():
+    progressBarUI.progressBar.setValue(0)
+    progressBarUI.progressBar.setMaximum(0)
+    loadData()
+    ProgressWindow.exec_()
 def openMainWindow():
     initializeActions(mainUI)
     initializeLists(mainUI)
@@ -275,11 +285,12 @@ def ViewCompresClustersOfTSA():
     Plot.create(points, defects, labels, info, dbw.limits[SelectedOutputParameterIndexTSA])
     plot_window.append(Plot.show())
 #########################################################################################################
-
+@thread
 def loadData():
     print("Начало загрузки данных...")
     dbw.loadData(settings['Language'], str(settings['FromDateTime']), str(settings['ToDateTime']))
     print(Fore.GREEN + "Данные успешно загружены")
+    ProgressWindow.close()
 
 def addCheckableItems(ui, items):
     for item in items:
@@ -302,7 +313,7 @@ if __name__ == "__main__":
         os.remove('3.csv')
     if os.path.exists('TSAC.html'):
         os.remove('TSAC.html')
-    loadData()
+    openProgressWindow()
     if dbw.isDataLoaded:
         openMainWindow()
         sys.exit(app.exec_())

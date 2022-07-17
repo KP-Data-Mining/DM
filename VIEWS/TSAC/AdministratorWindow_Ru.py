@@ -11,14 +11,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_AdministratorWindow(object):
-    def setupUi(self, AdministratorWindow):
-        AdministratorWindow.setObjectName("AdministratorWindow")
-        AdministratorWindow.setEnabled(True)
-        AdministratorWindow.resize(500, 530)
-        AdministratorWindow.setMinimumSize(QtCore.QSize(500, 530))
-        AdministratorWindow.setMaximumSize(QtCore.QSize(500, 530))
-        self.tabWidget_2 = QtWidgets.QTabWidget(AdministratorWindow)
+class Ui_AdministratorWindow_Ru(object):
+    def setupUi(self, AdministratorWindow_Ru):
+        AdministratorWindow_Ru.setObjectName("AdministratorWindow_Ru")
+        AdministratorWindow_Ru.setEnabled(True)
+        AdministratorWindow_Ru.resize(500, 530)
+        AdministratorWindow_Ru.setMinimumSize(QtCore.QSize(500, 530))
+        AdministratorWindow_Ru.setMaximumSize(QtCore.QSize(500, 530))
+        self.tabWidget_2 = QtWidgets.QTabWidget(AdministratorWindow_Ru)
         self.tabWidget_2.setGeometry(QtCore.QRect(0, 0, 500, 531))
         self.tabWidget_2.setMinimumSize(QtCore.QSize(0, 0))
         self.tabWidget_2.setMaximumSize(QtCore.QSize(500, 880))
@@ -147,30 +147,30 @@ class Ui_AdministratorWindow(object):
         self.gridLayout_3.addWidget(self.SettingsGroupboxTSA, 0, 0, 1, 1)
         self.tabWidget_2.addTab(self.TSA_tab, "")
 
-        self.retranslateUi(AdministratorWindow)
+        self.retranslateUi(AdministratorWindow_Ru)
         self.tabWidget_2.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(AdministratorWindow)
+        QtCore.QMetaObject.connectSlotsByName(AdministratorWindow_Ru)
 
-    def retranslateUi(self, AdministratorWindow):
+    def retranslateUi(self, AdministratorWindow_Ru):
         _translate = QtCore.QCoreApplication.translate
-        AdministratorWindow.setWindowTitle(_translate("AdministratorWindow", "AdministratorWindow"))
-        self.groupBox_7.setTitle(_translate("AdministratorWindow", "Настройки модуля анализа временных рядов"))
-        self.groupBox_4.setTitle(_translate("AdministratorWindow", "Выбор набора статистических характеристик"))
-        self.groupBox_3.setTitle(_translate("AdministratorWindow", "Размер \"скользящего окна\""))
-        self.groupBox_8.setTitle(_translate("AdministratorWindow", "Настройки модуля сжатия данных"))
-        self.groupBox_6.setTitle(_translate("AdministratorWindow", "Количество \"соседей\""))
-        self.groupBox_9.setTitle(_translate("AdministratorWindow", "Расстояние до \"соседей\""))
-        self.groupBox_10.setTitle(_translate("AdministratorWindow", "Настройки модуля кластеризации "))
-        self.groupBox_11.setTitle(_translate("AdministratorWindow", "Количество \"соседей\" "))
-        self.groupBox_12.setTitle(_translate("AdministratorWindow", "Расстояние до \"соседей\""))
-        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.TSA_tab), _translate("AdministratorWindow", "Настройки математических моделей"))
+        AdministratorWindow_Ru.setWindowTitle(_translate("AdministratorWindow_Ru", "AdministratorWindow"))
+        self.groupBox_7.setTitle(_translate("AdministratorWindow_Ru", "Настройки модуля анализа временных рядов"))
+        self.groupBox_4.setTitle(_translate("AdministratorWindow_Ru", "Выбор набора статистических характеристик"))
+        self.groupBox_3.setTitle(_translate("AdministratorWindow_Ru", "Размер \"скользящего окна\""))
+        self.groupBox_8.setTitle(_translate("AdministratorWindow_Ru", "Настройки модуля сжатия данных"))
+        self.groupBox_6.setTitle(_translate("AdministratorWindow_Ru", "Количество \"соседей\""))
+        self.groupBox_9.setTitle(_translate("AdministratorWindow_Ru", "Расстояние до \"соседей\""))
+        self.groupBox_10.setTitle(_translate("AdministratorWindow_Ru", "Настройки модуля кластеризации "))
+        self.groupBox_11.setTitle(_translate("AdministratorWindow_Ru", "Количество \"соседей\" "))
+        self.groupBox_12.setTitle(_translate("AdministratorWindow_Ru", "Расстояние до \"соседей\""))
+        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.TSA_tab), _translate("AdministratorWindow_Ru", "Настройки математических моделей"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    AdministratorWindow = QtWidgets.QWidget()
-    ui = Ui_AdministratorWindow()
-    ui.setupUi(AdministratorWindow)
-    AdministratorWindow.show()
+    AdministratorWindow_Ru = QtWidgets.QWidget()
+    ui = Ui_AdministratorWindow_Ru()
+    ui.setupUi(AdministratorWindow_Ru)
+    AdministratorWindow_Ru.show()
     sys.exit(app.exec_())
