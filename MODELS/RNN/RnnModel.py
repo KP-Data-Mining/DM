@@ -231,11 +231,11 @@ class RnnModel:
         if self.language == 'Ru':
             pyplot.plot(self.resultReal.index.values, self.resultReal[dbw.getIdFromDict(dbw.names, self.defect)], label='Реальное значение дефекта')
             pyplot.plot(self.resultForecast.index.values, self.resultForecast[dbw.getIdFromDict(dbw.names, self.defect)], label='Предсказанное значение дефекта')
-            pyplot.axhline(dbw.getDefectThreshold(dbw.getIdFromDict(dbw.names, self.defect)), label='Регламентное ограничение', Color='#000000')
+            pyplot.axhline(dbw.getDefectThreshold(dbw.getIdFromDict(dbw.names, self.defect)), label='Регламентное ограничение')
         else:
             pyplot.plot(self.resultReal.index.values, self.resultReal[dbw.getIdFromDict(dbw.names, self.defect)], label='Real values')
             pyplot.plot(self.resultForecast.index.values, self.resultForecast[dbw.getIdFromDict(dbw.names, self.defect)], label='Predicted values')
-            pyplot.axhline(dbw.getDefectThreshold(dbw.getIdFromDict(dbw.names, self.defect)), label='Regulatory restriction', Color='#000000')
+            pyplot.axhline(dbw.getDefectThreshold(dbw.getIdFromDict(dbw.names, self.defect)), label='Regulatory restriction')
         pyplot.ylabel(dbw.getParameterUnit(dbw.getIdFromDict(dbw.names, self.defect)))
         if self.language == 'Ru':
             pyplot.xlabel("Время")
