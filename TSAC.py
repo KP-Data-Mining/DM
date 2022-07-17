@@ -78,6 +78,7 @@ def openProgressWindow():
 def openMainWindow():
     initializeActions(mainUI)
     initializeLists(mainUI)
+    initializeUi(mainUI)
     MainWindow.show()
 def openAdministratorWindow():
     initializeActions(administratorUI)
@@ -132,6 +133,10 @@ def initializeActions(ui):
         mainUI.ClusterDataButtonTSA.clicked.connect(ViewCompresClustersOfTSA)
         mainUI.RawDataButtonTSA.clicked.connect(ShowRawDataTSA)
         mainUI.FeaturesDataButtonTSA.clicked.connect(ShowFeaturesTSA)
+def initializeUi(ui):
+    if type(ui) == Ui_MainWindow_Ru or type(ui) == Ui_MainWindow_Eng:
+        mainUI.progressBar.setMinimum(0)
+        mainUI.progressBar.setValue(0)
 
 #########################################################################################################
 def SavePropDBSCAN():
@@ -147,9 +152,10 @@ def ParametersSelectionTSA():
         if (mainUI.ParametersTSA.item(i).checkState() == QtCore.Qt.Checked):
             SelectedParametersNamesTSA.append(mainUI.ParametersTSA.item(i).text())
             SelectedParametersIndexesTSA.append(
-                list(dbw.names.keys())[list(dbw.names.values()).index(mainUI.ParametersTSA.item(i).text())])\
-
+                list(dbw.names.keys())[list(dbw.names.values()).index(mainUI.ParametersTSA.item(i).text())])
+                
 def PrepareDataTSA():
+    mainUI.progressBar.setMaximum(0)
     try:
         root = tkinter.Tk()
         root.withdraw()
@@ -178,6 +184,7 @@ def PrepareDataTSA():
     except AttributeError:
         mb.showerror("Ошибка", "Вы не выбрали технологический параметр/параметры")
         mainUI.ControlPanelTSA.setEnabled(False)
+    mainUI.progressBar.setMaximum(100)
 
 def TimeshiftValueTSA():
     tsa.timeshift = administratorUI.TimeshiftSpinboxTSA.value()

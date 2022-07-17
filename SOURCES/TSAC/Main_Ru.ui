@@ -313,7 +313,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QProgressBar" name="progressBar_2">
+      <widget class="QProgressBar" name="progressBar">
        <property name="minimumSize">
         <size>
          <width>495</width>
