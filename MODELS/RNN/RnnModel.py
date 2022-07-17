@@ -175,6 +175,9 @@ class RnnModel:
         for feat in self.features:
             self.resultReal[[feat]] = self.unscale(self.resultReal[[feat]], self.rawDataframe[[feat]].max(), self.rawDataframe[[feat]].min(), 1, -1)
             self.resultForecast[[feat]] = self.unscale(self.resultForecast[[feat]], self.rawDataframe[[feat]].max(), self.rawDataframe[[feat]].min(), 1, -1) 
+        for i in range(len(self.resultForecast[dbw.getIdFromDict(dbw.names, self.defect)])):
+            if self.resultForecast[dbw.getIdFromDict(dbw.names, self.defect)][i] < 0:
+                self.resultForecast[dbw.getIdFromDict(dbw.names, self.defect)][i] = 0
         self.testReal = self.resultReal.copy(deep=True)
         self.testReal = self.testReal[int(len(self.testReal)*0.9):]
         self.testForecast = self.resultForecast.copy(deep=True)
