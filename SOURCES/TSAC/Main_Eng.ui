@@ -71,7 +71,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>491</width>
+           <width>497</width>
            <height>641</height>
           </rect>
          </property>
@@ -309,6 +309,28 @@ control parameters</string>
          </layout>
         </widget>
        </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QProgressBar" name="progressBar">
+       <property name="minimumSize">
+        <size>
+         <width>495</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>495</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="value">
+        <number>24</number>
+       </property>
+       <property name="textVisible">
+        <bool>false</bool>
+       </property>
       </widget>
      </item>
      <item>
